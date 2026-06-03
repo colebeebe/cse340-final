@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+
+<main>
+  <h1>An Internal Error Occurred</h1>
+  <pre><%= message %></pre>
+  <a href="/">&larr; Return to safety</a>
+  <% if (NODE_ENV.includes('dev')) { %>
+    <details open>
+      <summary>Error Details (Development Only)</summary>
+      <pre><%= stack %></pre>
+    </details>
+  <% } %>
+</main>
+
+<%- include('../partials/footer') %>
