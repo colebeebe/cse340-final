@@ -1,6 +1,7 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { addLocalVariables } from './src/middleware/global.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,6 +15,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src', 'views'));
+
+app.use(addLocalVariables);
 
 app.get('/', (req, res) => {
   res.render('home', { title: 'Home' });
@@ -45,8 +48,31 @@ app.use((err, req, res, next) => {
   try {
     res.render(`errors/${template}`, context);
   } catch (renderError) {
-    res.send(`<h1>A Rendering Error Occured</h1><p>${renderError}</p>`);
+    if (!res.headersSent) {
+      res
+        .status(status)
+        .send(`<h1>A Rendering Error Occured</h1><p>${renderError}</p>`);
+    }
   }
 });
+
+if (NODE_ENV.includes('dev')) {
+  const ws = await import('ws');
+
+  try {
+    const wsPort = parseInt(PORT) + 1;
+    const wsServer = new ws.WebSocketServer({ port: wsPort });
+
+    wsServer.on('listening', () => {
+      console.log(`WebSocket server is running on port ${wsPort}`);
+    });
+
+    wsServer.on('error', (error) => {
+      console.error('Websocket server error:', error);
+    });
+  } catch (error) {
+    console.error('Failed to start WebSocket server:', error);
+  }
+}
 
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
