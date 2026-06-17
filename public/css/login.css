@@ -1,23 +1,37 @@
+h1 {
+  text-align: center;
+  margin: 40px 0;
+}
+
 form {
   margin: 0 auto;
   width: 400px;
   display: flex;
   flex-direction: column;
 
+  label {
+    font-family: 'Ubuntu Mono';
+  }
+
   input {
     margin-bottom: 25px;
-    padding: 8px 10px;
-    font-size: 1.2rem;
-    color: white;
+    padding: 10px 15px;
+    font-size: 1.3rem;
     background-color: hsl(265, 3%, 30%);
     border-radius: 10px;
+    font-family: 'Ubuntu Mono';
     border: none;
+
+    &:focus {
+      outline: 2px solid hsl(278, 100%, 50%);
+    }
   }
 
   button[type='submit'] {
     background-color: hsl(278, 100%, 40%);
     color: white;
-    font-size: 1.1rem;
+    font-family: 'Permanent Marker';
+    font-size: 1.2rem;
     padding: 5px;
     border: none;
     border-radius: 8px;
@@ -29,6 +43,19 @@ form {
     &:hover {
       background-color: hsl(278, 100%, 50%);
       box-shadow: 0 0 12px hsla(278, 100%, 70%, 50%);
+    }
+  }
+
+  p {
+    margin: 20px auto 0 auto;
+
+    a {
+      color: goldenrod;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

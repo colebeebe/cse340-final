@@ -1,3 +1,10 @@
+/* 
+  Fonts:
+    Permanent Marker
+    Special Elite
+    IM Fell DW Pica
+    Ubuntu Mono
+*/
 :root {
   background-color: hsl(265, 4%, 18%);
 }
@@ -5,6 +12,20 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Special Elite';
+  color: white;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Permanent Marker';
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -13,6 +34,7 @@ header {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
   position: sticky;
+  height: 130px;
   top: 0;
   left: 0;
 
@@ -27,7 +49,6 @@ header {
       padding: 5px 20px;
       border-radius: 10px;
       transition: background-color 0.5s ease;
-      color: white;
       font-size: 1.2rem;
       text-decoration: none;
 
@@ -39,6 +60,10 @@ header {
 }
 
 main {
-  height: 200vh;
-  color: white;
+  flex: 1;
+}
+
+footer {
+  text-align: center;
+  margin: 10px;
 }
