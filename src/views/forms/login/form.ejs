@@ -4,11 +4,25 @@
   <h1>Welcome Back!</h1>
   <form action="/login" method="POST" id="login-form">
     <label for="email">Email</label>
-    <input type="email" name="email" id="email" required />
+    <input
+      type="email"
+      name="email"
+      id="email"
+      placeholder="Enter your email"
+      required
+    />
+
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" required />
+    <input
+      type="password"
+      name="password"
+      id="password"
+      placeholder="Enter your password"
+      required
+    />
+
     <button type="submit">Log In</button>
-    <p>New to the site? <a href="/register">Create a new account</a>.</p>
+    <p>First time? <a href="/register">Create a new account</a>.</p>
   </form>
 </main>
 

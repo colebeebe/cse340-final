@@ -58,4 +58,31 @@ form {
       }
     }
   }
+
+  &#register-form {
+    width: 700px;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+
+      .help-text {
+        margin-top: -18px;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+      }
+    }
+
+    .name-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      div {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
 }

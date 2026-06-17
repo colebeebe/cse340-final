@@ -3,7 +3,7 @@ import { Router } from 'express';
 const router = Router();
 
 router.use('/', (req, res, next) => {
-  res.addStyle('<link rel="stylesheet" href="/css/login.css" />');
+  res.addStyle('<link rel="stylesheet" href="/css/accountForm.css" />');
   next();
 });
 
@@ -16,7 +16,7 @@ const showLoginForm = (req, res) => {
 };
 
 /**
- * @description Render the login form
+ * @description Process user login
  * @route POST /login
  */
 const processLogin = async (req, res) => {
