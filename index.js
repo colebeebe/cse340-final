@@ -1,7 +1,10 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
+
 import { addLocalVariables } from './src/middleware/global.js';
+import { testConnection } from './src/models/setup.js';
+import router from './src/controllers/routes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,9 +21,7 @@ app.set('views', path.join(__dirname, 'src', 'views'));
 
 app.use(addLocalVariables);
 
-app.get('/', (req, res) => {
-  res.render('home', { title: 'Home' });
-});
+app.use('/', router);
 
 app.use((req, res, next) => {
   const err = new Error('Page Not Found');
@@ -56,23 +57,33 @@ app.use((err, req, res, next) => {
   }
 });
 
-if (NODE_ENV.includes('dev')) {
-  const ws = await import('ws');
+try {
+  await testConnection();
 
-  try {
-    const wsPort = parseInt(PORT) + 1;
-    const wsServer = new ws.WebSocketServer({ port: wsPort });
+  app.listen(PORT, async () => {
+    if (NODE_ENV.includes('dev')) {
+      console.log(`Listening at http://localhost:${PORT}`);
 
-    wsServer.on('listening', () => {
-      console.log(`WebSocket server is running on port ${wsPort}`);
-    });
+      const ws = await import('ws');
 
-    wsServer.on('error', (error) => {
-      console.error('Websocket server error:', error);
-    });
-  } catch (error) {
-    console.error('Failed to start WebSocket server:', error);
-  }
+      try {
+        const wsPort = parseInt(PORT) + 1;
+        const wsServer = new ws.WebSocketServer({ port: wsPort });
+
+        wsServer.on('listening', () => {
+          console.log(`WebSocket server is running on port ${wsPort}`);
+        });
+
+        wsServer.on('error', (error) => {
+          console.error('Websocket server error:', error);
+        });
+      } catch (error) {
+        console.error('Failed to start WebSocket server:', error);
+      }
+    } else {
+      console.log(`Listening on port ${PORT}`);
+    }
+  });
+} catch (err) {
+  console.error('Connection error:\n', err);
 }
-
-app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));

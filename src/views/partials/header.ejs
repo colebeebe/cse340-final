@@ -7,6 +7,7 @@
     <title><%= title %></title>
     <link rel="icon" href="images/fav.png" />
     <link rel="stylesheet" href="css/style.css" />
+    <%- renderStyles() %>
     <% if (NODE_ENV.includes('dev')) { %>
       <script>
         const host = window.location.hostname;
@@ -29,5 +30,11 @@
       <nav>
         <a href="/">Home</a>
         <a href="/about">About</a>
+
+        <% if (isLoggedIn) { %>
+          <a href="/logout">Log Out</a>
+        <% } else { %>
+          <a href="/login">Log In</a>
+        <% } %>
       </nav>
     </header>
