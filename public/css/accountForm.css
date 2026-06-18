@@ -60,7 +60,11 @@ form {
   }
 
   &#register-form {
-    width: 700px;
+    width: 850px;
+
+    input:focus:invalid {
+      outline: 2px solid rgb(237, 68, 30);
+    }
 
     .form-group {
       display: flex;

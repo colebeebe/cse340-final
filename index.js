@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 
 import { addLocalVariables } from './src/middleware/global.js';
-import { testConnection } from './src/models/setup.js';
+import { setupDatabase, testConnection } from './src/models/setup.js';
 import router from './src/controllers/routes.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -15,6 +15,8 @@ const NODE_ENV = process.env.NODE_ENV || 'production';
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src', 'views'));
@@ -58,6 +60,7 @@ app.use((err, req, res, next) => {
 });
 
 try {
+  await setupDatabase();
   await testConnection();
 
   app.listen(PORT, async () => {
