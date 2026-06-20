@@ -33,7 +33,7 @@ app.use(
           },
         },
       },
-      tableName: 'oa_session',
+      tableName: 'session',
       createTableIfMissing: true,
     }),
     secret: process.env.SESSION_SECRET,
