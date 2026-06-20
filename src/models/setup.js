@@ -11,7 +11,7 @@ export const setupDatabase = async () => {
   let hasData = false;
   try {
     const result = await db.query(
-      'SELECT EXISTS (SELECT 1 FROM oa_users LIMIT 1) as has_data',
+      'SELECT EXISTS (SELECT 1 FROM oa_roles LIMIT 1) as has_data',
     );
     hasData = result.rows[0]?.has_data || false;
   } catch {
