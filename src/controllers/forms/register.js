@@ -1,11 +1,13 @@
 import { Router } from 'express';
 import bcrypt from 'bcrypt';
+import { validationResult } from 'express-validator';
 
 import {
   saveUser,
   emailExists,
   usernameExists,
 } from '../../models/forms/registration.js';
+import { registrationValidation } from '../../middleware/validation/forms.js';
 
 const router = Router();
 
@@ -27,7 +29,16 @@ const showRegistrationForm = (req, res) => {
  * @route POST /register
  */
 const processRegistration = async (req, res) => {
-  // TODO: Create form validation
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    errors.array().forEach((error) => {
+      // TODO: Create flash message
+      console.error('Validation Error:', error.msg);
+    });
+    return res.redirect('/register');
+  }
+
   const {
     firstName,
     lastName,
@@ -62,6 +73,6 @@ const processRegistration = async (req, res) => {
 };
 
 router.get('/', showRegistrationForm);
-router.post('/', processRegistration);
+router.post('/', registrationValidation, processRegistration);
 
 export default router;

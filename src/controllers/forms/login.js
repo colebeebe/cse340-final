@@ -1,6 +1,8 @@
 import { Router } from 'express';
 
 import { findUserByEmail, verifyPassword } from '../../models/forms/login.js';
+import { validationResult } from 'express-validator';
+import { loginValidation } from '../../middleware/validation/forms.js';
 
 const router = Router();
 
@@ -22,7 +24,16 @@ const showLoginForm = (req, res) => {
  * @route POST /login
  */
 const processLogin = async (req, res) => {
-  // TODO: Create validation
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    errors.array().forEach((error) => {
+      // TODO: Create flash message
+      console.error('Validation Error:', error.msg);
+    });
+    return res.redirect('/login');
+  }
+
   const { email, password } = req.body;
 
   try {
@@ -70,6 +81,6 @@ export const processLogout = (req, res) => {
 };
 
 router.get('/', showLoginForm);
-router.post('/', processLogin);
+router.post('/', loginValidation, processLogin);
 
 export default router;
