@@ -1,13 +1,22 @@
+// Package imports
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
 
-import { addLocalVariables } from './src/middleware/global.js';
+// Database
 import { setupDatabase, testConnection } from './src/models/setup.js';
-import router from './src/controllers/routes.js';
 import { caCert } from './src/models/db.js';
+
+// Session
+import { startSessionCleanup } from './src/utils/session-cleanup.js';
+
+// Middleware
+import { addLocalVariables } from './src/middleware/global.js';
+
+// Routes
+import router from './src/controllers/routes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -46,6 +55,8 @@ app.use(
     },
   }),
 );
+
+startSessionCleanup();
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
