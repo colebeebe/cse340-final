@@ -1,4 +1,33 @@
     <footer>&copy; <%= new Date().getFullYear() %> Cole Beebe-Urbanawiz</footer>
     <%- renderScripts() %>
+    <script>
+      const searchInput = document.getElementById('searchInput');
+      const searchResults = document.getElementById('searchResults');
+
+      let timeout;
+
+      searchInput.addEventListener('input', () => {
+        clearTimeout(timeout);
+
+        timeout = setTimeout(async () => {
+          const query = searchInput.value.trim();
+
+          if (query.length < 2) {
+            searchResults.innerHTML = '';
+            return;
+          }
+
+          const response = await fetch(`/search?q=${encodeURIComponent(query)}`);
+
+          const games = await response.json();
+
+          searchResults.innerHTML = games.map((game) => {
+            return `
+              <a href="#">${game.title}</a>
+            `;
+          }).join('');
+        }, 500);
+      });
+    </script>
   </body>
 </html>

@@ -27,3 +27,11 @@ VALUES
   ('verified', 'Verified user with notable social presence'),
   ('user', 'Standard user with basic access')
 ON CONFLICT (role_name) DO NOTHING;
+
+CREATE TABLE IF NOT EXISTS oa_games (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(127) NOT NULL,
+  description VARCHAR(2000),
+  release_date DATE NOT NULL,
+  cover_image VARCHAR(255)
+);

@@ -46,6 +46,22 @@ header {
     width: 120px;
   }
 
+  .search-container {
+    input {
+      width: 600px;
+      font-size: 1.1rem;
+      padding: 14px 10px 10px 10px;
+      color: white;
+      border-radius: 10px;
+      border: none;
+      background-color: #333;
+
+      &:focus {
+        outline: 3px solid goldenrod;
+      }
+    }
+  }
+
   nav {
     margin-right: 20px;
 
