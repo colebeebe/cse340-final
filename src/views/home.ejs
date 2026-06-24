@@ -2,7 +2,17 @@
 
 <main>
   <h1>Home Page</h1>
-  <p>Welcome home.</p>
+  <% if (user) { %>
+    <p>Welcome back, <%= user.first_name %>.</p>
+    <% if (NODE_ENV.includes('dev')) { %>
+      <details open>
+        <summary>User Info (Development Only)</summary>
+        <pre><%= JSON.stringify(user, null, 2) %></pre>
+      </details>
+    <% } %>
+  <% } else { %>
+    <p>Welcome home.</p>
+  <% } %>
 </main>
 
 <%- include('partials/footer') %>
