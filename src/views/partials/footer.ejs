@@ -28,6 +28,14 @@
           }).join('');
         }, 500);
       });
+
+      searchInput.addEventListener('focus', () => {
+        searchResults.classList.remove('hide');
+      });
+
+      searchInput.addEventListener('blur', () => {
+        searchResults.classList.add('hide');
+      });
     </script>
   </body>
 </html>
