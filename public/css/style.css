@@ -73,6 +73,7 @@ header {
         padding: 20px;
         font-size: 1.2rem;
         text-decoration: none;
+        cursor: pointer;
 
         &:hover {
           background-color: #333;

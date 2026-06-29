@@ -21,11 +21,16 @@
 
           const games = await response.json();
 
-          searchResults.innerHTML = games.map((game) => {
-            return `
-              <a href="#">${game.title}</a>
-            `;
-          }).join('');
+          searchResults.innerHTML = '';
+          const dropdownLinks = games.forEach((game) => {
+            const a = document.createElement('a');
+            a.addEventListener('mousedown', () => {
+              window.location = `/games/${game.id}`;
+            })
+            a.src = `/games/${game.id}`;
+            a.textContent = game.title;
+            searchResults.append(a);
+          });
         }, 500);
       });
 
@@ -33,7 +38,7 @@
         searchResults.classList.remove('hide');
       });
 
-      searchInput.addEventListener('blur', () => {
+      searchInput.addEventListener('blur', (e) => {
         searchResults.classList.add('hide');
       });
     </script>

@@ -1,3 +1,6 @@
+-- Required extensions
+CREATE EXTENSION IF NOT EXISTS unaccent;
+
 -- Table creation for users and roles
 
 CREATE TABLE IF NOT EXISTS oa_users (

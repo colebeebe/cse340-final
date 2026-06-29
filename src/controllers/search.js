@@ -14,7 +14,7 @@ const performSearch = async (req, res) => {
   const games = await db.query(
     `
     SELECT id, title FROM oa_games
-    WHERE title ILIKE $1
+    WHERE unaccent(title) ILIKE unaccent($1)
     LIMIT 10;
     `,
     [`%${query}%`],

@@ -3,6 +3,7 @@ import { Router } from 'express';
 import { homePage } from './index.js';
 import { requireLogin } from '../middleware/auth.js';
 
+import gameRoutes from './games/games.js';
 import loginRoutes, { processLogout, showAccount } from './forms/login.js';
 import registrationRoutes from './forms/register.js';
 import searchRoutes from './search.js';
@@ -13,6 +14,7 @@ router.get('/', homePage);
 router.get('/account', requireLogin, showAccount);
 router.get('/logout', processLogout);
 
+router.use('/games', gameRoutes);
 router.use('/search', searchRoutes);
 router.use('/login', loginRoutes);
 router.use('/register', registrationRoutes);
