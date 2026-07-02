@@ -1,8 +1,21 @@
 <%- include('./partials/header') %>
 
-<main>
-  <h1><%= game.title %></h1>
-  <p><%= game.description %></p>
+<main class="game__page">
+  <div class="game-display">
+    <img
+      src="<%= game.cover_image %>"
+      alt="cover art for <%= game.title %>"
+      class="game-cover-art"
+    />
+    <div class="game-info">
+      <h1><%= game.title %></h1>
+      <p><%= game.description %></p>
+    </div>
+    <div class="game-ratings">
+      <p class="number-rating">4/5</p>
+      <p class="star-rating">★★★★☆</p>
+    </div>
+  </div>
 </main>
 
 <%- include('./partials/footer') %>

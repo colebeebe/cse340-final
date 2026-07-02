@@ -1,0 +1,49 @@
+.game__page {
+  .game-display {
+    background-color: #353539;
+    display: flex;
+    gap: 20px;
+    width: 60%;
+    margin: 20px auto;
+    padding: 40px 30px;
+    border-radius: 10px;
+
+    .game-cover-art {
+      width: 400px;
+    }
+
+    .game-info {
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      p {
+        text-align: justify;
+      }
+    }
+
+    .game-ratings {
+      .number-rating {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        font-family: 'Ubuntu Mono';
+        border: 5px solid #444447;
+        border-radius: 50%;
+        aspect-ratio: 1 / 1;
+        margin: 0 auto;
+        width: 80px;
+      }
+
+      .star-rating {
+        font-size: 3rem;
+        color: goldenrod;
+
+        &::selection {
+          background-color: white;
+        }
+      }
+    }
+  }
+}
