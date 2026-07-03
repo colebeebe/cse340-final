@@ -14,6 +14,9 @@
     <div class="game-ratings">
       <p class="number-rating">4/5</p>
       <p class="star-rating">★★★★☆</p>
+      <% if (user && user.role_name === 'admin') { %>
+        <a href="/" class="edit-game-button">Edit</a>
+      <% } %>
     </div>
   </div>
 </main>
