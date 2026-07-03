@@ -1,1 +1,2 @@
 src/views/partials/*.ejs
+src/views/games/edit.ejs

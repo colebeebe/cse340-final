@@ -1,4 +1,4 @@
-<%- include('./partials/header') %>
+<%- include('../partials/header') %>
 
 <main class="game__page">
   <div class="game-display">
@@ -15,10 +15,10 @@
       <p class="number-rating">4/5</p>
       <p class="star-rating">★★★★☆</p>
       <% if (user && user.role_name === 'admin') { %>
-        <a href="/" class="edit-game-button">Edit</a>
+        <a href="/games/<%= game.id %>/edit" class="edit-game-button">Edit</a>
       <% } %>
     </div>
   </div>
 </main>
 
-<%- include('./partials/footer') %>
+<%- include('../partials/footer') %>

@@ -1,20 +1,19 @@
 import { Router } from 'express';
-import { getGameById } from '../../models/games/games.js';
+import { editGame, getGame } from './index.js';
 
 const router = Router();
 
-router.use('/', (req, res, next) => {
+router.use('/:id', (req, res, next) => {
   res.addStyle('<link rel="stylesheet" href="/css/gameInfo.css" />');
   next();
 });
 
-router.get('/:id', async (req, res) => {
-  const id = req.params.id;
-  const game = await getGameById(id);
-  res.render('game', {
-    title: `${game.title} | Oasis Games`,
-    game,
-  });
+router.use('/:id/edit', (req, res, next) => {
+  res.addScript('<script src="/js/editGame.js"></script>');
+  next();
 });
+
+router.get('/:id/edit', editGame);
+router.get('/:id', getGame);
 
 export default router;

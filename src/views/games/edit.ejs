@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+
+<main class="edit-game__page">
+  <h1>Edit <%= game.title %></h1>
+  <form id="edit-game-form">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        name="title"
+        id="title"
+        value="<%= game.title %>"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea name="description" id="description" rows="10"><%= game.description ?? '' %></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="imageUrl">Image URL</label>
+      <input type="text" name="imageUrl" id="imageUrl" value="<%= game.cover_image %>" />
+      <img class="cover-art" src="<%= game.cover_image %>" alt="image not found" />
+    </div>
+
+    <button type="submit">Save Changes</button>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>
