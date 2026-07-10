@@ -80,16 +80,6 @@ export const processLogout = (req, res) => {
   res.redirect('/');
 };
 
-/**
- * Display protected account (dashboard)
- * Requires login
- */
-export const showAccount = (req, res) => {
-  res.render('account', {
-    title: 'User Account',
-  });
-};
-
 router.get('/', showLoginForm);
 router.post('/', loginValidation, processLogin);
 

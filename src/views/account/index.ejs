@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+
+<main class="account__page">
+  <h1>User Account</h1>
+  <div class="account-section">
+    <div class="account-group">
+      <h2>Username</h2>
+      <p><%= user.username %></p>
+    </div>
+    <div class="account-group">
+      <h2>Email</h2>
+      <p><%= user.email %></p>
+    </div>
+  </div>
+
+  <div class="account-section">
+    <div class="account-group">
+      <h2>Name</h2>
+      <p><%= user.first_name %> <%= user.last_name %></p>
+    </div>
+    <% if (user.birthdate) { %>
+      <div class="account-group">
+        <h2>Birthday</h2>
+        <p><%= new Date(user.birthdate).toLocaleDateString() %></p>
+      </div>
+    <% } %>
+  </div>
+
+  <div class="account-section">
+    <div class="account-group">
+      <h2>Join Date</h2>
+      <p><%= new Date(user.created_at).toLocaleDateString() %></p>
+    </div>
+    <div class="account-group">
+      <h2>Last Updated</h2>
+      <p><%= new Date(user.updated_at).toLocaleDateString() %></p>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <a href="/account/edit" class="edit-button">Edit Account</a>
+    <button>Delete Account</button>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

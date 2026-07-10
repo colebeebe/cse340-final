@@ -1,0 +1,136 @@
+h1 {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.account__page {
+  width: 600px;
+  margin: 0 auto;
+
+  .account-section {
+    display: flex;
+    margin-bottom: 10px;
+
+    .account-group {
+      flex: 1;
+
+      h2 {
+        font-size: 1.1rem;
+      }
+      p {
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  .button-container {
+    padding-top: 20px;
+    display: flex;
+    gap: 10px;
+
+    button,
+    .edit-button {
+      flex: 1;
+      color: white;
+      font-family: 'Permanent Marker';
+      font-size: 1.2rem;
+      padding: 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition:
+        background-color 0.5s ease,
+        box-shadow 0.8s ease;
+    }
+
+    .edit-button {
+      background-color: hsl(278, 100%, 40%);
+
+      &:hover {
+        background-color: hsl(278, 100%, 50%);
+        box-shadow: 0 0 12px hsla(278, 100%, 70%, 50%);
+      }
+    }
+
+    button {
+      background-color: hsl(15, 80%, 50%);
+
+      &:hover {
+        background-color: hsl(15, 80%, 60%);
+        box-shadow: 0 0 12px hsla(15, 90%, 70%, 50%);
+      }
+    }
+  }
+}
+
+form {
+  margin: 0 auto;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .name-container {
+    display: flex;
+    gap: 20px;
+
+    div {
+      flex: 1;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      font-family: 'Ubuntu Mono';
+      background-color: hsl(265, 3%, 30%);
+      border-radius: 10px;
+      border: none;
+      font-size: 1.3rem;
+      padding: 10px 15px;
+
+      &:focus {
+        outline: 2px solid hsl(278, 100%, 50%);
+      }
+
+      &:invalid {
+        outline: 2px solid hsl(15, 80%, 50%);
+      }
+    }
+  }
+
+  button,
+  .cancel-button {
+    background-color: lightgray;
+    color: #444;
+    font-family: 'Permanent Marker';
+    font-size: 1.2rem;
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition:
+      background-color 0.5s ease,
+      box-shadow 0.8s ease;
+
+    &:hover {
+      background-color: darkgray;
+    }
+
+    &[type='submit'] {
+      background-color: hsl(278, 100%, 40%);
+      color: white;
+
+      &:hover {
+        background-color: hsl(278, 100%, 50%);
+        box-shadow: 0 0 12px hsla(278, 100%, 70%, 50%);
+      }
+    }
+  }
+}
