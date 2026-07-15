@@ -19,6 +19,18 @@
       <% } %>
     </div>
   </div>
+  <div class="review-section">
+    <% if (user) { %>
+      <a href="/games/<%= game.id %>/review">Leave a Review</a>
+    <% } %>
+    <h1>Reviews</h1>
+    <div class="all-reviews">
+      <div class="review-card">
+        <h1>username</h1>
+        <p>I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
+      </div>
+    </div>
+  </div>
 </main>
 
 <%- include('../partials/footer') %>

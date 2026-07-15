@@ -1,0 +1,93 @@
+.review__page {
+  margin: 0 auto;
+  width: 1000px;
+
+  form {
+    .star-rating-container {
+      display: flex;
+
+      .zero-star,
+      .full-star {
+        position: relative;
+        height: 32px;
+        width: 13px;
+        cursor: pointer;
+      }
+
+      .star {
+        position: relative;
+        height: 32px;
+        width: 26px;
+        cursor: pointer;
+
+        .empty {
+          font-size: 32px;
+          position: absolute;
+          color: goldenrod;
+        }
+
+        .full {
+          font-size: 2rem;
+          position: absolute;
+          overflow: hidden;
+          color: goldenrod;
+        }
+      }
+    }
+
+    textarea {
+      background-color: #353539;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+
+      &:focus {
+        outline: 2px solid hsl(278, 100%, 50%);
+      }
+    }
+
+    .btn-container {
+      display: flex;
+      gap: 10px;
+      width: 600px;
+      margin: 0 auto;
+      padding-top: 20px;
+
+      a,
+      button {
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        padding: 5px;
+        color: white;
+        font-family: 'Permanent Marker';
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 0 auto;
+        width: 100%;
+        transition:
+          background-color 0.5s ease,
+          box-shadow 0.8s ease;
+      }
+
+      a {
+        background-color: #535357;
+
+        &:hover {
+          background-color: #5a5a5d;
+        }
+      }
+
+      button[type='submit'] {
+        background-color: hsl(278, 100%, 40%);
+
+        &:hover {
+          background-color: hsl(278, 100%, 50%);
+          box-shadow: 0 0 12px hsla(278, 100%, 70%, 50%);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<%- include('../../partials/header') %>
+
+<main class="review__page">
+  <h1>Reviewing <%= game.title %></h1>
+  <form>
+    <div class="star-rating-container">
+      <div class="zero-star"></div>
+      <div class="star" data-index="0">
+        <span class="empty">☆</span>
+        <span class="full hide">★</span>
+      </div>
+      <div class="star" data-index="1">
+        <span class="empty">☆</span>
+        <span class="full hide">★</span>
+      </div>
+      <div class="star" data-index="2">
+        <span class="empty">☆</span>
+        <span class="full hide">★</span>
+      </div>
+      <div class="star" data-index="3">
+        <span class="empty">☆</span>
+        <span class="full hide">★</span>
+      </div>
+      <div class="star" data-index="4">
+        <span class="empty">☆</span>
+        <span class="full hide">★</span>
+      </div>
+      <div class="full-star"></div>
+    </div>
+    <p class="rating-number">Stars: 0</p>
+    <textarea rows="10" placeholder="Leave an optional message..."></textarea>
+    <div class="btn-container">
+      <a href="/games/<%= game.id %>">Cancel</a>
+      <button type="submit" id="submit-button">Submit</button>
+    </div>
+  </form>
+</main>
+
+<%- include('../../partials/footer') %>
