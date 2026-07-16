@@ -10,7 +10,15 @@ import searchRoutes from './search.js';
 
 const router = Router();
 
-router.get('/', homePage);
+router.get(
+  '/',
+  (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/home.css" />');
+    next();
+  },
+  homePage,
+);
+
 router.get('/logout', processLogout);
 
 router.use('/account', accountRoutes);

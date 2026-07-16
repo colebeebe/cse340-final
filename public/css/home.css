@@ -1,0 +1,57 @@
+.home__page {
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .home-section {
+    width: 80%;
+    margin: 0 auto;
+    border-top: 1px solid gray;
+    margin-top: 40px;
+
+    &:first-of-type {
+      border-top: none;
+      margin-top: 0;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 20px auto;
+    }
+  }
+
+  .home-container {
+    display: flex;
+    padding: 0 40px;
+    gap: 20px;
+
+    .game-card {
+      background-color: #464348;
+      flex: 1;
+      padding: 15px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      transition: box-shadow 0.8s ease;
+
+      &:hover {
+        box-shadow: 0 0 10px rgba(150, 150, 150, 0.2);
+      }
+
+      h3 {
+        font-size: 1.2rem;
+        text-align: center;
+      }
+
+      .star-rating {
+        color: goldenrod;
+        font-size: 2rem;
+      }
+    }
+  }
+}
