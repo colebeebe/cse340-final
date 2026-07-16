@@ -70,12 +70,14 @@
   </div>
 
   <div class="home-section latest-section">
-    <h2>Newly Added</h2>
+    <h2>Recently Added</h2>
     <div class="home-container latest-container">
       <% recentlyAdded.forEach((game) => { %>
         <a href="/games/<%= game.id %>" class="game-card latest-card">
           <h3><%= game.title %></h3>
-          <img src="<%= game.cover_image %>" alt="cover-photo" />
+          <div class="img-container">
+            <img src="<%= game.cover_image %>" alt="cover photo for <%= game.title %>" />
+          </div>
           <p class="star-rating">★★★★☆</p>
         </a>
       <% }); %>

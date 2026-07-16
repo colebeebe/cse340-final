@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { editGame, getGame, reviewGame } from './index.js';
+import { postGameChanges } from '../../models/forms/editGame.js';
 
 const router = Router();
 
@@ -19,8 +20,20 @@ router.use('/:id/review', (req, res, next) => {
   next();
 });
 
+const submitEdits = async (req, res) => {
+  const id = req.params.id;
+  const data = {
+    id,
+    ...req.body,
+  };
+  await postGameChanges(data);
+  res.redirect(`/games/${id}`);
+};
+
 router.get('/:id/edit', editGame);
 router.get('/:id', getGame);
 router.get('/:id/review', reviewGame);
+
+router.post('/:id/edit', submitEdits);
 
 export default router;

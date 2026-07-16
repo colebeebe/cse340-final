@@ -2,7 +2,7 @@
 
 <main class="edit-game__page">
   <h1>Edit <%= game.title %></h1>
-  <form id="edit-game-form">
+  <form id="edit-game-form" method="POST" action="/games/<%= game.id %>/edit">
     <div class="form-group">
       <label for="title">Title</label>
       <input
