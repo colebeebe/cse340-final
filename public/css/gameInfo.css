@@ -64,6 +64,10 @@
           background-color: #f52f0c;
         }
       }
+
+      .edit-message {
+        margin-top: 10px;
+      }
     }
   }
 }
@@ -104,25 +108,45 @@
       }
     }
 
-    button[type='submit'] {
-      background-color: hsl(278, 100%, 40%);
-      color: white;
-      font-family: 'Permanent Marker';
-      font-size: 1.2rem;
-      padding: 5px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 400px;
-      margin: 0 auto;
-      display: block;
-      transition:
-        background-color 0.5s ease,
-        box-shadow 0.8s ease;
+    .btn-container {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
 
-      &:hover {
-        background-color: hsl(278, 100%, 50%);
-        box-shadow: 0 0 12px hsla(278, 100%, 70%, 50%);
+      a,
+      button {
+        flex: 1;
+        font-family: 'Permanent Marker';
+        font-size: 1.2rem;
+        padding: 5px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+        margin: 0 auto;
+        display: inline-block;
+        transition:
+          background-color 0.5s ease,
+          box-shadow 0.8s ease;
+      }
+
+      a {
+        background-color: #474749;
+
+        &:hover {
+          background-color: #575759;
+        }
+      }
+
+      button[type='submit'] {
+        background-color: hsl(278, 100%, 40%);
+        color: white;
+
+        &:hover {
+          background-color: hsl(278, 100%, 50%);
+          box-shadow: 0 0 12px hsla(278, 100%, 70%, 50%);
+        }
       }
     }
   }

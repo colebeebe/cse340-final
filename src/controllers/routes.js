@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { homePage } from './index.js';
+import { homePage, homePageStyle, aboutPage } from './index.js';
 
 import accountRoutes from './account/account.js';
 import gameRoutes from './games/games.js';
@@ -10,14 +10,14 @@ import searchRoutes from './search.js';
 
 const router = Router();
 
-router.get(
-  '/',
-  (req, res, next) => {
-    res.addStyle('<link rel="stylesheet" href="/css/home.css" />');
-    next();
-  },
-  homePage,
-);
+router.use('/about', (req, res, next) => {
+  res.addStyle('<link rel="stylesheet" href="/css/about.css" />');
+  next();
+});
+
+router.get('/', homePageStyle, homePage);
+
+router.get('/about', aboutPage);
 
 router.get('/logout', processLogout);
 

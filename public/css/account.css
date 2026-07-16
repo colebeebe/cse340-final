@@ -63,6 +63,26 @@ h1 {
       }
     }
   }
+
+  .logout-button {
+    flex: 1;
+    font-family: 'Permanent Marker';
+    font-size: 1.2rem;
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    background-color: #474749;
+    display: block;
+    margin-top: 10px;
+    transition: background-color 0.5s ease;
+
+    &:hover {
+      background-color: #575759;
+    }
+  }
 }
 
 form {

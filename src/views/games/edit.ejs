@@ -25,7 +25,10 @@
       <img class="cover-art" src="<%= game.cover_image %>" alt="image not found" />
     </div>
 
-    <button type="submit">Save Changes</button>
+    <div class="btn-container">
+      <a href="/games/<%= game.id %>">Cancel</a>
+      <button type="submit">Save Changes</button>
+    </div>
   </form>
 </main>
 
