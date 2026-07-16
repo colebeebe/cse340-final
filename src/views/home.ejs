@@ -6,7 +6,7 @@
   <% } else { %>
     <h1>Welcome to the Oasis!</h1>
   <% } %>
-  
+
   <div class="home-section new-review-section">
     <h2>Latest Reviews</h2>
     <div class="home-container new-review-container">
@@ -72,31 +72,13 @@
   <div class="home-section latest-section">
     <h2>Newly Added</h2>
     <div class="home-container latest-container">
-      <a href="#" class="game-card latest-card">
-        <h3>The Legend of Zelda: Majora's Mask</h3>
-        <img src="https://picsum.photos/200/200" alt="cover-photo" />
-        <p class="star-rating">★★★★☆</p>
-      </a>
-      <a href="#" class="game-card latest-card">
-        <h3>The Legend of Zelda: Ocarina of Time</h3>
-        <img src="https://picsum.photos/200/200" alt="cover-photo" />
-        <p class="star-rating">★★★★☆</p>
-      </a>
-      <a href="#" class="game-card latest-card">
-        <h3>The Legend of Zelda: Twilight Princess</h3>
-        <img src="https://picsum.photos/200/200" alt="cover-photo" />
-        <p class="star-rating">★★★★☆</p>
-      </a>
-      <a href="#" class="game-card latest-card">
-        <h3>The Legend of Zelda: A Link to the Past</h3>
-        <img src="https://picsum.photos/200/200" alt="cover-photo" />
-        <p class="star-rating">★★★★☆</p>
-      </a>
-      <a href="#" class="game-card latest-card">
-        <h3>The Legend of Zelda: Oracle of Ages</h3>
-        <img src="https://picsum.photos/200/200" alt="cover-photo" />
-        <p class="star-rating">★★★★☆</p>
-      </a>
+      <% recentlyAdded.forEach((game) => { %>
+        <a href="/games/<%= game.id %>" class="game-card latest-card">
+          <h3><%= game.title %></h3>
+          <img src="<%= game.cover_image %>" alt="cover-photo" />
+          <p class="star-rating">★★★★☆</p>
+        </a>
+      <% }); %>
     </div>
   </div>
 

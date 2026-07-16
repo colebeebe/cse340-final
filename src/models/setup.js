@@ -22,7 +22,7 @@ export const setupDatabase = async () => {
   if (fs.existsSync(queryPath)) {
     const querySQL = fs.readFileSync(queryPath, 'utf8');
     if (querySQL.trim()) {
-      await db.query(practiceSQL);
+      await db.query(querySQL);
       console.log('Query from query.sql run');
     }
   }

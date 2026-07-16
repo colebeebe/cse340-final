@@ -36,5 +36,7 @@ CREATE TABLE IF NOT EXISTS oa_games (
   title VARCHAR(127) NOT NULL,
   description VARCHAR(2000),
   release_date DATE NOT NULL,
-  cover_image VARCHAR(255)
+  cover_image VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
