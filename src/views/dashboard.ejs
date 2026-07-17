@@ -1,0 +1,23 @@
+<%- include('./partials/header') %>
+
+<main class="dashboard__page">
+  <h1>Dashboard</h1>
+
+  <div class="dashboard-section add-game">
+    <h2>Manage Games</h2>
+    <a href="#">Add a Game</a>
+  </div>
+
+  <div class="dashboard-section">
+    <h2>Manage Users</h2>
+    <% users.forEach(user => { %>
+      <div class="user-card">
+        <h3><%= user.first_name %></h3>
+        <p>Role: <%= user.role %></p>
+      </div>
+    <% }); %>
+    <pre><%= JSON.stringify(users, null, 2) %></pre>
+  </div>
+</main>
+
+<%- include('./partials/footer') %>

@@ -86,9 +86,19 @@ export const saveUser = async (
  */
 export const getAllUsers = async () => {
   const query = `
-    SELECT id, username, email, created_at
-    FROM oa_users
-    ORDER BY created_at DESC
+    SELECT
+      u.id,
+      u.first_name,
+      u.last_name,
+      u.birthdate,
+      u.email,
+      u.created_at,
+      u.updated_at,
+      r.role_name AS role
+    FROM oa_users u
+    JOIN oa_roles r
+    ON u.role_id = r.id
+    ORDER BY u.id;
   `;
   const result = await db.query(query);
   return result.rows;
