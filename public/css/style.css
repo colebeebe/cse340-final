@@ -5,6 +5,13 @@
     IM Fell DW Pica
     Ubuntu Mono
 */
+@font-face {
+  font-family: 'Hack Nerd Font';
+  src: url('/fonts/HackNerdFont-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   background-color: hsl(265, 4%, 18%);
 }
@@ -30,6 +37,18 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.verified-icon {
+  font-family: 'Hack Nerd Font';
+  color: hsl(278, 100%, 60%);
+  cursor: default;
+}
+
+.employee-icon {
+  font-family: 'Hack Nerd Font';
+  color: goldenrod;
+  cursor: default;
 }
 
 header {

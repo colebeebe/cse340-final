@@ -19,10 +19,17 @@
 
       p {
         text-align: justify;
+        line-height: 1.2rem;
       }
     }
 
     .game-ratings {
+      .rating-title {
+        font-size: 0.8rem;
+        text-align: center;
+        margin: 20px auto 5px auto;
+      }
+
       .number-rating {
         display: flex;
         justify-content: center;
@@ -32,16 +39,27 @@
         border: 5px solid #444447;
         border-radius: 50%;
         aspect-ratio: 1 / 1;
-        margin: 0 auto;
+        margin: 0 20px;
         width: 80px;
       }
 
       .star-rating {
-        font-size: 3rem;
-        color: goldenrod;
+        text-align: center;
+        margin-top: 10px;
+
+        span {
+          font-size: 1.7rem;
+          color: goldenrod;
+          font-family: 'Hack Nerd Font';
+          margin-left: 5px;
+
+          &::selection {
+            background-color: transparent;
+          }
+        }
 
         &::selection {
-          background-color: white;
+          background-color: transparent;
         }
       }
 
@@ -67,6 +85,118 @@
 
       .edit-message {
         margin-top: 10px;
+      }
+    }
+  }
+
+  .reviews {
+    width: 1000px;
+    margin: 0 auto;
+
+    .current-user-review {
+      border: 1px solid gray;
+      border-radius: 10px;
+      padding: 10px;
+
+      p {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      a {
+        background-color: hsl(278, 100%, 40%);
+        display: block;
+        width: 400px;
+        padding: 10px;
+        font-size: 1.4rem;
+        font-family: 'Permanent Marker';
+        margin: 0 auto;
+        border-radius: 10px;
+        text-align: center;
+        text-decoration: none;
+        transition:
+          background-color 0.5s ease,
+          box-shadow 0.8s ease;
+
+        &:hover {
+          background-color: hsl(278, 100%, 50%);
+          box-shadow: 0 0 12px hsla(278, 100%, 70%, 50%);
+        }
+      }
+    }
+
+    .review-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      h1 {
+        margin-top: 30px;
+      }
+
+      .review-card {
+        background-color: #3e3e40;
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+
+        .review-content {
+          .username-container {
+            span,
+            .username {
+              font-size: 1.4rem;
+            }
+
+            .username {
+              text-decoration: underline;
+              font-weight: bold;
+            }
+          }
+
+          .review-message {
+            font-size: 1.1rem;
+            margin-top: 20px;
+            line-height: 1.3rem;
+          }
+        }
+
+        .rating-info {
+          width: 200px;
+
+          p {
+            font-size: 0.8rem;
+          }
+
+          .number-rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4rem;
+            font-family: 'Ubuntu Mono';
+            border: 3px solid #48484b;
+            border-radius: 50%;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+            width: 50px;
+          }
+
+          .star-rating {
+            span {
+              color: goldenrod;
+              font-size: 1.4rem;
+              font-family: 'Hack Nerd Font';
+              margin-left: 2px;
+
+              &::selection {
+                background-color: transparent;
+              }
+            }
+
+            &::selection {
+              background-color: transparent;
+            }
+          }
+        }
       }
     }
   }

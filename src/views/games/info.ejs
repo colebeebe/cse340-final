@@ -2,18 +2,51 @@
 
 <main class="game__page">
   <div class="game-display">
-    <img
-      src="<%= game.cover_image %>"
-      alt="cover art for <%= game.title %>"
-      class="game-cover-art"
-    />
+    <div>
+      <img
+        src="<%= game.cover_image %>"
+        alt="cover art for <%= game.title %>"
+        class="game-cover-art"
+      />
+    </div>
     <div class="game-info">
       <h1><%= game.title %></h1>
       <p><%= game.description %></p>
     </div>
     <div class="game-ratings">
-      <p class="number-rating">4/5</p>
-      <p class="star-rating">★★★★☆</p>
+      <div class="rating-section">
+        <p class="rating-title">Our Rating</p>
+        <p class="number-rating">3.5</p>
+        <p class="star-rating">
+          <span>&#xf04ce;</span>
+          <span>&#xf04ce;</span>
+          <span>&#xf04ce;</span>
+          <span>&#xf04d0;</span>
+          <span>&#xf04d2;</span>
+        </p>
+      </div>
+      <div class="rating-section">
+        <p class="rating-title">Verified Rating</p>
+        <p class="number-rating">3.5</p>
+        <p class="star-rating">
+          <span>&#xf04ce;</span>
+          <span>&#xf04ce;</span>
+          <span>&#xf04ce;</span>
+          <span>&#xf04d0;</span>
+          <span>&#xf04d2;</span>
+        </p>
+      </div>
+      <div class="rating-section">
+        <p class="rating-title">User Rating</p>
+        <p class="number-rating">3.5</p>
+        <p class="star-rating">
+          <span>&#xf04ce;</span>
+          <span>&#xf04ce;</span>
+          <span>&#xf04ce;</span>
+          <span>&#xf04d0;</span>
+          <span>&#xf04d2;</span>
+        </p>
+      </div>
       <% if (user && user.role_name === 'admin') { %>
         <a href="/games/<%= game.id %>/edit" class="edit-game-button">Edit</a>
         <%
@@ -43,15 +76,155 @@
       <% } %>
     </div>
   </div>
-  <div class="review-section">
+  <div class="reviews">
     <% if (user) { %>
-      <a href="/games/<%= game.id %>/review">Leave a Review</a>
+      <div class="current-user-review">
+        <p>It looks like you haven't left a review yet.</p>
+        <a href="/games/<%= game.id %>/review" class="leave-review">Leave a Review</a>
+      </div>
     <% } %>
-    <h1>Reviews</h1>
-    <div class="all-reviews">
+
+    <div class="review-section">
+      <h1>Our Reviews</h1>
       <div class="review-card">
-        <h1>username</h1>
-        <p>I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
+        <div class="review-content">
+          <div class="username-container">
+            <span class="username">username</span>
+            <span class="employee-icon" title="Oasis Employee">&#xf1055;</span>
+            <span class="verified-icon" title="Verified User">&#xebe9;</span>
+          </div>
+          <p class="review-message">I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
+        </div>
+        <div class="rating-info">
+          <p class="number-rating">3.5</p>
+          <p class="star-rating">
+            <span>&#xf04ce;</span>
+            <span>&#xf04ce;</span>
+            <span>&#xf04ce;</span>
+            <span>&#xf04d0;</span>
+            <span>&#xf04d2;</span>
+          </p>
+          <p>16 Jul 2026</p>
+          <p>8:10pm</p>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-content">
+          <div class="username-container">
+            <span class="username">username</span>
+            <span class="employee-icon" title="Oasis Employee">&#xf1055;</span>
+            <span class="verified-icon" title="Verified User">&#xebe9;</span>
+          </div>
+          <p class="review-message">I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
+        </div>
+        <div class="rating-info">
+          <p class="number-rating">3.5</p>
+          <p class="star-rating">
+            <span>&#xf04ce;</span>
+            <span>&#xf04ce;</span>
+            <span>&#xf04ce;</span>
+            <span>&#xf04d0;</span>
+            <span>&#xf04d2;</span>
+          </p>
+          <p>16 Jul 2026</p>
+          <p>8:10pm</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <h1>Verified Reviews</h1>
+      <div class="review-card">
+        <div class="review-content">
+          <div class="username-container">
+            <span class="username">username</span>
+            <span class="employee-icon" title="Oasis Employee">&#xf1055;</span>
+            <span class="verified-icon" title="Verified User">&#xebe9;</span>
+          </div>
+          <p class="review-message">I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
+        </div>
+        <div class="rating-info">
+          <p class="number-rating">3.5</p>
+          <p class="star-rating">
+            <span>&#xf04ce;</span>
+            <span>&#xf04ce;</span>
+            <span>&#xf04ce;</span>
+            <span>&#xf04d0;</span>
+            <span>&#xf04d2;</span>
+          </p>
+          <p>16 Jul 2026</p>
+          <p>8:10pm</p>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-content">
+          <div class="username-container">
+            <span class="username">username</span>
+            <span class="employee-icon" title="Oasis Employee">&#xf1055;</span>
+            <span class="verified-icon" title="Verified User">&#xebe9;</span>
+          </div>
+          <p class="review-message">I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
+        </div>
+        <div class="rating-info">
+          <p class="number-rating">3.5</p>
+          <p class="star-rating">
+            <span>&#xf04ce;</span>
+            <span>&#xf04ce;</span>
+            <span>&#xf04ce;</span>
+            <span>&#xf04d0;</span>
+            <span>&#xf04d2;</span>
+          </p>
+          <p>16 Jul 2026</p>
+          <p>8:10pm</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <h1>User Reviews</h1>
+      <div class="review-card">
+        <div class="review-content">
+          <div class="username-container">
+            <span class="username">username</span>
+            <span class="employee-icon" title="Oasis Employee">&#xf1055;</span>
+            <span class="verified-icon" title="Verified User">&#xebe9;</span>
+          </div>
+          <p class="review-message">I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
+        </div>
+        <div class="rating-info">
+          <p class="number-rating">3.5</p>
+          <p class="star-rating">
+            <span>&#xf04ce;</span>
+            <span>&#xf04ce;</span>
+            <span>&#xf04ce;</span>
+            <span>&#xf04d0;</span>
+            <span>&#xf04d2;</span>
+          </p>
+          <p>16 Jul 2026</p>
+          <p>8:10pm</p>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-content">
+          <div class="username-container">
+            <span class="username">username</span>
+            <span class="employee-icon" title="Oasis Employee">&#xf1055;</span>
+            <span class="verified-icon" title="Verified User">&#xebe9;</span>
+          </div>
+          <p class="review-message">I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
+        </div>
+        <div class="rating-info">
+          <p class="number-rating">3.5</p>
+          <p class="star-rating">
+            <span>&#xf04ce;</span>
+            <span>&#xf04ce;</span>
+            <span>&#xf04ce;</span>
+            <span>&#xf04d0;</span>
+            <span>&#xf04d2;</span>
+          </p>
+          <p>16 Jul 2026</p>
+          <p>8:10pm</p>
+        </div>
       </div>
     </div>
   </div>
