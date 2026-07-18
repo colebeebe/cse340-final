@@ -1,7 +1,33 @@
 .dashboard__page {
+  width: 1200px;
+  margin: 0 auto;
+
   h1 {
     font-size: 3rem;
     text-align: center;
+  }
+
+  .add-game {
+    h2 {
+      margin-bottom: 15px;
+    }
+
+    a {
+      background-color: hsl(278, 100%, 40%);
+      padding: 5px 50px;
+      font-family: 'Permanent Marker';
+      font-size: 1.2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition:
+        background-color 0.5s ease,
+        box-shadow 0.8s ease;
+
+      &:hover {
+        background-color: hsl(278, 100%, 50%);
+        box-shadow: 0 0 12px hsla(278, 100%, 70%, 50%);
+      }
+    }
   }
 
   .user-list {
@@ -39,6 +65,44 @@
 
         span:first-of-type {
           text-decoration: underline;
+        }
+      }
+
+      .button-container {
+        display: flex;
+        gap: 10px;
+
+        a,
+        button {
+          flex: 1;
+          padding: 5px;
+          font-family: 'Permanent Marker';
+          font-size: 1.2rem;
+          border-radius: 10px;
+          transition:
+            background-color 0.5s ease,
+            box-shadow 0.8s ease;
+        }
+
+        button {
+          background-color: #f75122;
+          cursor: pointer;
+          border: none;
+
+          &:hover {
+            background-color: #f52f0c;
+          }
+        }
+
+        a {
+          background-color: hsl(278, 100%, 40%);
+          text-align: center;
+          text-decoration: none;
+
+          &:hover {
+            background-color: hsl(278, 100%, 50%);
+            box-shadow: 0 0 12px hsla(278, 100%, 70%, 50%);
+          }
         }
       }
     }

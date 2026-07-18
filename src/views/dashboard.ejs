@@ -8,6 +8,10 @@
     <a href="#">Add a Game</a>
   </div>
 
+  <br />
+  <hr />
+  <br />
+
   <div class="dashboard-section">
     <h2>Manage Users</h2>
     <div class="user-list">
@@ -20,7 +24,7 @@
                 class="admin-icon <%= user.role === 'admin' ? '' : 'hide' %>"
                 title="Oasis Admin"
               >
-                &#xf415;
+                &#xf4ca;
               </span>
               <span
                 class="employee-icon <%= user.role === 'critic' ? '' : 'hide' %>"
@@ -40,7 +44,9 @@
           <p class="email"><%= user.email %></p>
           <div class="card-section">
             <p class="first-last-name"><%= user.first_name %> <%= user.last_name %></p>
-            <p class="birthday">Birthday: <%= new Date(user.birthdate).toLocaleDateString() %></p>
+            <% if (user.birthdate) { %>
+              <p class="birthday">Birthday: <%= new Date(user.birthdate).toLocaleDateString() %></p>
+            <% } %>
           </div>
           <p class="join-date">Joined: <%= new Date(user.created_at).toLocaleDateString() %></p>
           <p class="edit-date">Edited: <%= new Date(user.updated_at).toLocaleDateString() %></p>
