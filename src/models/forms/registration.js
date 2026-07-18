@@ -91,6 +91,7 @@ export const getAllUsers = async () => {
       u.first_name,
       u.last_name,
       u.birthdate,
+      u.username,
       u.email,
       u.created_at,
       u.updated_at,

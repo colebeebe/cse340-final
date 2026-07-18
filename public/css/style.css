@@ -51,6 +51,12 @@ body {
   cursor: default;
 }
 
+.admin-icon {
+  font-family: 'Hack Nerd Font';
+  color: aquamarine;
+  cursor: default;
+}
+
 header {
   display: flex;
   justify-content: space-between;

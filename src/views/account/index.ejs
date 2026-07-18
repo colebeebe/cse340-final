@@ -5,7 +5,21 @@
   <div class="account-section">
     <div class="account-group">
       <h2>Username</h2>
-      <p><%= user.username %></p>
+      <p>
+        <%= user.username %>
+        <span
+          class="employee-icon <%= user.role_name === 'critic' ? '' : 'hide' %>"
+          title="Oasis Employee"
+        >
+          &#xf1055;
+        </span>
+        <span
+          class="verified-icon <%= user.role_name === 'verified' ? '' : 'hide' %>"
+          title="Verified User"
+        >
+          &#xebe9;
+        </span>
+      </p>
     </div>
     <div class="account-group">
       <h2>Email</h2>

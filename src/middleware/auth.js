@@ -25,7 +25,7 @@ export const requireRole = (roleList) => {
       return res.redirect('/login');
     }
 
-    if (roleList.includes(req.session.user.role_name)) {
+    if (!roleList.includes(req.session.user.role_name)) {
       // TODO: Create flash message
       console.error('You do not have permission to access this page');
       return res.redirect('/');

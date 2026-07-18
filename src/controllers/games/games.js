@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { editGame, getGame, reviewGame } from './index.js';
 import { postGameChanges } from '../../models/forms/editGame.js';
+import { requireLogin, requireRole } from '../../middleware/auth.js';
 
 const router = Router();
 
@@ -30,10 +31,10 @@ const submitEdits = async (req, res) => {
   res.redirect(`/games/${id}`);
 };
 
-router.get('/:id/edit', editGame);
+router.get('/:id/edit', requireRole(['admin']), editGame);
 router.get('/:id', getGame);
-router.get('/:id/review', reviewGame);
+router.get('/:id/review', requireLogin, reviewGame);
 
-router.post('/:id/edit', submitEdits);
+router.post('/:id/edit', requireRole(['admin']), submitEdits);
 
 export default router;

@@ -10,13 +10,48 @@
 
   <div class="dashboard-section">
     <h2>Manage Users</h2>
-    <% users.forEach(user => { %>
-      <div class="user-card">
-        <h3><%= user.first_name %></h3>
-        <p>Role: <%= user.role %></p>
-      </div>
-    <% }); %>
-    <pre><%= JSON.stringify(users, null, 2) %></pre>
+    <div class="user-list">
+      <% users.forEach(user => { %>
+        <div class="user-card">
+          <div class="card-section">
+            <p class="username">
+              <span><%= user.username %></span>
+              <span
+                class="admin-icon <%= user.role === 'admin' ? '' : 'hide' %>"
+                title="Oasis Admin"
+              >
+                &#xf415;
+              </span>
+              <span
+                class="employee-icon <%= user.role === 'critic' ? '' : 'hide' %>"
+                title="Oasis Employee"
+              >
+                &#xf1055;
+              </span>
+              <span
+                class="verified-icon <%= user.role === 'verified' ? '' : 'hide' %>"
+                title="Verified User"
+              >
+                &#xebe9;
+              </span>
+            </p>
+            <p class="role <%= user.role === 'user' ? 'hide' : '' %>"><%= user.role %></p>
+          </div>
+          <p class="email"><%= user.email %></p>
+          <div class="card-section">
+            <p class="first-last-name"><%= user.first_name %> <%= user.last_name %></p>
+            <p class="birthday">Birthday: <%= new Date(user.birthdate).toLocaleDateString() %></p>
+          </div>
+          <p class="join-date">Joined: <%= new Date(user.created_at).toLocaleDateString() %></p>
+          <p class="edit-date">Edited: <%= new Date(user.updated_at).toLocaleDateString() %></p>
+          <div class="button-container">
+            <a href="#">Edit</a>
+            <button>Delete</button>
+          </div>
+        </div>
+      <% }); %>
+      <!-- <pre><%= JSON.stringify(users, null, 2) %></pre> -->
+    </div>
   </div>
 </main>
 
