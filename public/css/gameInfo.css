@@ -14,6 +14,11 @@
 
     .game-info {
       h1 {
+        margin-bottom: 10px;
+      }
+
+      .release-date {
+        font-size: 1.2rem;
         margin-bottom: 20px;
       }
 

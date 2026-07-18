@@ -20,6 +20,11 @@
     </div>
 
     <div class="form-group">
+      <label for="releaseDate">Release Date</label>
+      <input type="date" name="releaseDate" id="release-date" value="<%= new Date(game.release_date).toISOString().split('T')[0] %>" />
+    </div>
+
+    <div class="form-group">
       <label for="imageUrl">Image URL</label>
       <input type="text" name="imageUrl" id="imageUrl" value="<%= game.cover_image %>" />
       <img class="cover-art" src="<%= game.cover_image %>" alt="image not found" />

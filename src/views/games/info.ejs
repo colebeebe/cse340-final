@@ -11,7 +11,8 @@
     </div>
     <div class="game-info">
       <h1><%= game.title %></h1>
-      <p><%= game.description %></p>
+      <p class="release-date">Release Date: <%= new Date(game.release_date).toLocaleDateString() %></p>
+      <p class="description"><%= game.description %></p>
     </div>
     <div class="game-ratings">
       <div class="rating-section">

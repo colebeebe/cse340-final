@@ -1,0 +1,34 @@
+<%- include('../partials/header') %>
+
+<main class="new-game__page">
+  <h1>Create a New Game</h1>
+  <form id="create-game" method="POST" action="/games/new">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" required />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea name="description" id="description" rows="6"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="releaseDate">Release Date</label>
+      <input type="date" name="releaseDate" id="release-date" required />
+    </div>
+
+    <div class="form-group">
+      <label for="coverImage">Image</label>
+      <input type="text" name="coverImage" id="cover-image" />
+      <img id="preview-image" alt="Image not found." />
+    </div>
+
+    <div class="btn-container">
+      <a href="/">Cancel</a>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</main>
+
+<%- include('../partials/footer') %>

@@ -41,3 +41,14 @@ export const reviewGame = async (req, res) => {
     game,
   });
 };
+
+/**
+ * Create a game resource
+ *
+ * @route GET /games/new
+ */
+export const createNewGame = async (req, res) => {
+  res.render('games/new', {
+    title: 'New Game | Oasis Games',
+  });
+};
