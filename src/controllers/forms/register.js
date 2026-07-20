@@ -33,8 +33,7 @@ const processRegistration = async (req, res) => {
 
   if (!errors.isEmpty()) {
     errors.array().forEach((error) => {
-      // TODO: Create flash message
-      console.error('Validation Error:', error.msg);
+      req.flash('error', error.msg);
     });
     return res.redirect('/register');
   }
@@ -52,13 +51,13 @@ const processRegistration = async (req, res) => {
 
   try {
     if (await emailExists(email)) {
-      // TODO: Create flash message instead of printing to console
-      console.error('Email already taken');
+      req.flash('warning', 'Email already taken');
+      return res.redirect('/register');
     }
 
     if (await usernameExists(username)) {
-      // TODO: Create flash message instead of printing to console
-      console.error('Username already taken.');
+      return req.flash('warning', 'Username already taken');
+      return res.redirect('/register');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);

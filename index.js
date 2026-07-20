@@ -14,6 +14,7 @@ import { startSessionCleanup } from './src/utils/session-cleanup.js';
 
 // Middleware
 import { addLocalVariables } from './src/middleware/global.js';
+import flash from './src/middleware/flash.js';
 
 // Routes
 import router from './src/controllers/routes.js';
@@ -66,6 +67,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src', 'views'));
 
 app.use(addLocalVariables);
+app.use(flash);
 
 app.use('/', router);
 

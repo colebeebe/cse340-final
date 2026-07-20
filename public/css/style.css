@@ -185,6 +185,28 @@ footer {
   }
 }
 
+.flash-messages {
+  .flash {
+    background-color: #3a3a3c;
+    padding: 20px 10px;
+    width: 350px;
+    margin: 10px auto;
+    border-radius: 5px;
+    font-size: 1.3rem;
+  }
+
+  .success {
+    border-left: 3px solid hsl(278, 100%, 40%);
+  }
+
+  .warning {
+    border-left: 3px solid goldenrod;
+  }
+
+  .error {
+    border-left: 3px solid #f75122;
+  }
+}
 .hide {
   display: none !important;
 }

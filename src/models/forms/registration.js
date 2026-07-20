@@ -8,11 +8,11 @@ import db from '../db.js';
  */
 export const emailExists = async (email) => {
   const query = `
-    SELECT EXISTS(SELECT 1 FROM oa_users WHERE email = $1) as exists;
+    SELECT EXISTS(SELECT 1 FROM oa_users WHERE email = $1) as email_exists;
   `;
 
   const result = await db.query(query, [email]);
-  return result.rows[0].exists;
+  return result.rows[0].email_exists;
 };
 
 /**
@@ -23,11 +23,11 @@ export const emailExists = async (email) => {
  */
 export const usernameExists = async (username) => {
   const query = `
-  SELECT EXISTS(SELECT 1 FROM oa_users WHERE username = $1) as exists;
+  SELECT EXISTS(SELECT 1 FROM oa_users WHERE username = $1) as username_exists;
   `;
 
   const result = await db.query(query, [username]);
-  return result.rows[0].exists;
+  return result.rows[0].username_exists;
 };
 
 /**

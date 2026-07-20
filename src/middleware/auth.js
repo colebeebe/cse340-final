@@ -20,14 +20,12 @@ export const requireLogin = (req, res, next) => {
 export const requireRole = (roleList) => {
   return (req, res, next) => {
     if (!req.session || !req.session.user) {
-      // TODO: Create flash message
-      console.error('You must be logged in to access this page');
+      req.flash('error', 'You must be logged in to access this page');
       return res.redirect('/login');
     }
 
     if (!roleList.includes(req.session.user.role_name)) {
-      // TODO: Create flash message
-      console.error('You do not have permission to access this page');
+      req.flash('error', 'You do not have permission to access this page');
       return res.redirect('/');
     }
 

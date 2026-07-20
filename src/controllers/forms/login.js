@@ -28,8 +28,7 @@ const processLogin = async (req, res) => {
 
   if (!errors.isEmpty()) {
     errors.array().forEach((error) => {
-      // TODO: Create flash message
-      console.error('Validation Error:', error.msg);
+      req.flash('error', error.msg);
     });
     return res.redirect('/login');
   }
@@ -40,19 +39,19 @@ const processLogin = async (req, res) => {
     const user = await findUserByEmail(email);
 
     if (!user) {
-      // TODO: Create flash message middleware
-      console.log('Invalid email or password');
+      req.flash('error', 'Invalid email or password');
       return res.redirect('/login');
     }
 
     if (!(await verifyPassword(password, user.password))) {
-      console.log('Invalid email or password');
+      req.flash('error', 'Invalid email or password');
       return res.redirect('/login');
     }
 
     delete user.password;
 
     req.session.user = user;
+    req.flash('success', 'Login successful');
     return res.redirect('/');
   } catch (error) {
     console.error('Error finding user:', error);
@@ -77,6 +76,7 @@ export const processLogout = (req, res) => {
   });
 
   res.clearCookie('connect.sid');
+  req.flash('success', 'Logged out.');
   res.redirect('/');
 };
 
