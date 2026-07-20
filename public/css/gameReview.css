@@ -10,27 +10,47 @@
   }
 
   form {
-    .star-rating-container {
+    .your-rating {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 20px 0;
 
-      .zero-star,
-      .full-star {
-        position: relative;
-        height: 32px;
-        width: 13px;
-        cursor: pointer;
+      .rating-number {
+        font-size: 2rem;
+        font-family: 'Ubuntu Mono';
+        border: 5px solid #444447;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        border-radius: 50%;
       }
 
-      .star {
-        span {
-          color: goldenrod;
-          font-family: 'Hack Nerd Font';
-          font-size: 2.4rem;
-          cursor: pointer;
-          padding: 0 5px;
+      .star-rating-container {
+        display: flex;
 
-          &::selection {
-            background-color: transparent;
+        .zero-star,
+        .full-star {
+          position: relative;
+          height: 32px;
+          width: 13px;
+          cursor: pointer;
+        }
+
+        .star {
+          span {
+            color: goldenrod;
+            font-family: 'Hack Nerd Font';
+            font-size: 2.4rem;
+            cursor: pointer;
+            padding: 0 5px;
+
+            &::selection {
+              background-color: transparent;
+            }
           }
         }
       }

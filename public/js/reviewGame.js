@@ -1,4 +1,5 @@
 const stars = document.querySelectorAll('.star');
+const starInput = document.getElementById('starRating');
 
 let currentRating = 0;
 
@@ -29,6 +30,8 @@ stars.forEach((star, index) => {
     if (half) {
       currentRating--;
     }
+
+    starInput.value = currentRating;
   });
 });
 
@@ -44,6 +47,7 @@ document.querySelector('.zero-star').addEventListener('mousemove', (e) => {
 
 document.querySelector('.zero-star').addEventListener('click', () => {
   currentRating = 0;
+  starInput.value = currentRating;
   drawStars(currentRating);
 });
 
@@ -53,6 +57,7 @@ document.querySelector('.full-star').addEventListener('mousemove', (e) => {
 
 document.querySelector('.full-star').addEventListener('click', () => {
   currentRating = 10;
+  starInput.value = currentRating;
   drawStars(currentRating);
 });
 
@@ -69,9 +74,5 @@ function drawStars(rating) {
     }
   });
 
-  document.querySelector('.rating-number').textContent = `Stars: ${rating / 2}`;
+  document.querySelector('.rating-number').textContent = rating / 2;
 }
-
-document.querySelector('#submit-button').addEventListener('click', (e) => {
-  e.preventDefault();
-});

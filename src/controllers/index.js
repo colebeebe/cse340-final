@@ -1,11 +1,13 @@
-import { getRecentlyAdded } from '../models/games/groups.js';
+import { getNewReleases, getRecentlyAdded } from '../models/games/groups.js';
 import { getAllUsers } from '../models/forms/registration.js';
 
 export const homePage = async (req, res) => {
   const recentlyAdded = await getRecentlyAdded();
+  const newReleases = await getNewReleases();
   res.render('home', {
     title: 'Home | Oasis Games',
     recentlyAdded,
+    newReleases,
   });
 };
 

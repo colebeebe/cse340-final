@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS oa_reviews (
   user_id INT NOT NULL REFERENCES oa_users(id),
   game_id INT NOT NULL REFERENCES oa_games(id),
   PRIMARY KEY (user_id, game_id),
+  user_role_id INT NOT NULL REFERENCES oa_roles(id),
   star_rating INT NOT NULL CHECK (star_rating BETWEEN 0 AND 10),
   comment TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

@@ -3,28 +3,36 @@
 <main class="review__page">
   <img src="<%= game.cover_image %>" alt="cover image for <%= game.title %>" />
   <h1>Reviewing <%= game.title %></h1>
-  <form>
-    <div class="star-rating-container">
-      <div class="zero-star"></div>
-      <div class="star" data-index="0">
-        <span>&#xf04d2;</span>
+  <form id="review-form" method="POST" action="/games/<%= game.id %>/review">
+    <div class="your-rating">
+      <p class="rating-number">0</p>
+      <div class="star-rating-container">
+        <div class="zero-star"></div>
+        <div class="star" data-index="0">
+          <span>&#xf04d2;</span>
+        </div>
+        <div class="star" data-index="1">
+          <span>&#xf04d2;</span>
+        </div>
+        <div class="star" data-index="2">
+          <span>&#xf04d2;</span>
+        </div>
+        <div class="star" data-index="3">
+          <span>&#xf04d2;</span>
+        </div>
+        <div class="star" data-index="4">
+          <span>&#xf04d2;</span>
+        </div>
+        <div class="full-star"></div>
       </div>
-      <div class="star" data-index="1">
-        <span>&#xf04d2;</span>
-      </div>
-      <div class="star" data-index="2">
-        <span>&#xf04d2;</span>
-      </div>
-      <div class="star" data-index="3">
-        <span>&#xf04d2;</span>
-      </div>
-      <div class="star" data-index="4">
-        <span>&#xf04d2;</span>
-      </div>
-      <div class="full-star"></div>
+      <input type="hidden" name="starRating" id="starRating" />
     </div>
-    <p class="rating-number">Stars: 0</p>
-    <textarea rows="10" placeholder="Leave an optional message..."></textarea>
+    <textarea
+      rows="10"
+      id="comment"
+      name="comment"
+      placeholder="Leave an optional message..."
+    ></textarea>
     <div class="btn-container">
       <a href="/games/<%= game.id %>">Cancel</a>
       <button type="submit" id="submit-button">Submit</button>

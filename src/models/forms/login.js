@@ -3,7 +3,7 @@ import db from '../db.js';
 
 /**
  * Find a user by email address for login verification
- * 
+ *
  * @param {string} email - Email address to search for
  * @returns {Promise<Object|null>} User object with password hash or null if not found
  */
@@ -19,6 +19,7 @@ export const findUserByEmail = async (email) => {
       oa_users.password,
       oa_users.created_at,
       oa_users.updated_at,
+      oa_users.role_id,
       oa_roles.role_name
     FROM oa_users
     INNER JOIN oa_roles ON oa_users.role_id = oa_roles.id
@@ -31,7 +32,7 @@ export const findUserByEmail = async (email) => {
 
 /**
  * Verify a plain text password against a stored bcrypt hash
- * 
+ *
  * @param {string} plainPassword - The password to verify
  * @param {string} hashedPassword - The stored password hash
  * @returns {Promise<Boolean>} True if password matches, false otherwise
