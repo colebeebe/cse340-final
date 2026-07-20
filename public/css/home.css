@@ -62,8 +62,12 @@
       }
 
       .star-rating {
-        color: goldenrod;
-        font-size: 2rem;
+        span {
+          color: goldenrod;
+          font-size: 2rem;
+          font-family: 'Hack Nerd Font';
+          margin: 0 2px;
+        }
       }
     }
   }

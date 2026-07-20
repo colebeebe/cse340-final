@@ -61,13 +61,11 @@ function drawStars(rating) {
     const fullValue = (i + 1) * 2;
 
     if (rating >= fullValue) {
-      star.querySelector('.full').classList.remove('hide');
-      star.querySelector('.full').style.width = '100%';
+      star.querySelector('span').textContent = '\u{f04ce}';
     } else if (rating === fullValue - 1) {
-      star.querySelector('.full').classList.remove('hide');
-      star.querySelector('.full').style.width = '50%';
+      star.querySelector('span').textContent = '\u{f04d0}';
     } else {
-      star.querySelector('.full').classList.add('hide');
+      star.querySelector('span').textContent = '\u{f04d2}';
     }
   });
 

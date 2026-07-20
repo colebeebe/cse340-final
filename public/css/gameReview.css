@@ -22,22 +22,16 @@
       }
 
       .star {
-        position: relative;
-        height: 32px;
-        width: 26px;
-        cursor: pointer;
-
-        .empty {
-          font-size: 32px;
-          position: absolute;
+        span {
           color: goldenrod;
-        }
+          font-family: 'Hack Nerd Font';
+          font-size: 2.4rem;
+          cursor: pointer;
+          padding: 0 5px;
 
-        .full {
-          font-size: 2rem;
-          position: absolute;
-          overflow: hidden;
-          color: goldenrod;
+          &::selection {
+            background-color: transparent;
+          }
         }
       }
     }
