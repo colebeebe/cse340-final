@@ -4,6 +4,7 @@ import {
   getCriticReviews,
   getVerifiedReviews,
   getUserReviews,
+  getStarRatings,
 } from '../../models/reviews/reviews.js';
 
 /**
@@ -15,9 +16,13 @@ export const getGame = async (req, res) => {
   const id = req.params.id;
   const game = await getGameById(id);
   const user_id = res.locals.user.id;
+
   const currentUserReview = await getCurrentUserReview(user_id, id);
   const criticReviews = await getCriticReviews(id);
   const verifiedReviews = await getVerifiedReviews(id);
+
+  const starRatings = await getStarRatings(id);
+
   const userReviews = await getUserReviews(id);
   res.render(`games/info`, {
     title: `${game.title} | Oasis Games`,
@@ -26,6 +31,7 @@ export const getGame = async (req, res) => {
     criticReviews,
     verifiedReviews,
     userReviews,
+    starRatings,
   });
 };
 

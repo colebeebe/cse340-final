@@ -42,35 +42,53 @@
     <div class="game-ratings">
       <div class="rating-section">
         <p class="rating-title">Our Rating</p>
-        <p class="number-rating">3.5</p>
+        <p class="number-rating"><%= starRatings[2] ? starRatings[2] / 2 : 'None' %></p>
         <p class="star-rating">
-          <span>&#xf04ce;</span>
-          <span>&#xf04ce;</span>
-          <span>&#xf04ce;</span>
-          <span>&#xf04d0;</span>
-          <span>&#xf04d2;</span>
+          <% for (let i = 0; i < 5; i++) { %> 
+            <% const value = starRatings[2] - (i * 2); %>
+
+            <% if (value >= 2) { %>
+              <span>&#xf04ce;</span>
+            <% } else if (value >= 1) { %>
+              <span>&#xf04d0;</span>
+            <% } else { %>
+              <span>&#xf04d2;</span>
+            <% } %>
+          <% } %>
         </p>
       </div>
       <div class="rating-section">
         <p class="rating-title">Verified Rating</p>
-        <p class="number-rating">3.5</p>
+        <p class="number-rating"><%= starRatings[3] ? starRatings[3] / 2 : 'None' %></p>
         <p class="star-rating">
-          <span>&#xf04ce;</span>
-          <span>&#xf04ce;</span>
-          <span>&#xf04ce;</span>
-          <span>&#xf04d0;</span>
-          <span>&#xf04d2;</span>
+          <% for (let i = 0; i < 5; i++) { %> 
+            <% const value = starRatings[3] - (i * 2); %>
+
+            <% if (value >= 2) { %>
+              <span>&#xf04ce;</span>
+            <% } else if (value >= 1) { %>
+              <span>&#xf04d0;</span>
+            <% } else { %>
+              <span>&#xf04d2;</span>
+            <% } %>
+          <% } %>
         </p>
       </div>
       <div class="rating-section">
         <p class="rating-title">User Rating</p>
-        <p class="number-rating">3.5</p>
+        <p class="number-rating"><%= starRatings[4] ? starRatings[4] / 2 : 'None' %></p>
         <p class="star-rating">
-          <span>&#xf04ce;</span>
-          <span>&#xf04ce;</span>
-          <span>&#xf04ce;</span>
-          <span>&#xf04d0;</span>
-          <span>&#xf04d2;</span>
+          <% for (let i = 0; i < 5; i++) { %> 
+            <% const value = starRatings[4] - (i * 2); %>
+
+            <% if (value >= 2) { %>
+              <span>&#xf04ce;</span>
+            <% } else if (value >= 1) { %>
+              <span>&#xf04d0;</span>
+            <% } else { %>
+              <span>&#xf04d2;</span>
+            <% } %>
+          <% } %>
         </p>
       </div>
       <% if (user && user.role_name === 'admin') { %>

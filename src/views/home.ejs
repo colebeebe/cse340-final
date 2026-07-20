@@ -77,13 +77,7 @@
           <div class="img-container">
             <img src="<%= game.cover_image %>" alt="cover photo for <%= game.title %>" />
           </div>
-          <p class="star-rating">
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04d0;</span>
-            <span>&#xf04d2;</span>
-          </p>
+          <p class="release-date">Released: <%= new Date(game.release_date).toLocaleDateString() %></p>
         </a>
       <% }); %>
     </div>
@@ -98,13 +92,7 @@
           <div class="img-container">
             <img src="<%= game.cover_image %>" alt="cover photo for <%= game.title %>" />
           </div>
-          <p class="star-rating">
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04d0;</span>
-            <span>&#xf04d2;</span>
-          </p>
+          <p class="release-date">Released: <%= new Date(game.release_date).toLocaleDateString() %></p>
         </a>
       <% }); %>
     </div>

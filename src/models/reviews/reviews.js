@@ -101,3 +101,28 @@ export const getUserReviews = async (game_id) => {
   const response = await db.query(query, [game_id]);
   return response.rows;
 };
+
+export const getStarRatings = async (game_id) => {
+  const query = `
+    SELECT
+      user_role_id AS role_id,
+      AVG(star_rating)
+    FROM oa_reviews
+    WHERE
+      user_role_id IN (2, 3, 4)
+    AND
+      game_id = $1
+    GROUP BY role_id
+    ORDER BY role_id;
+  `;
+
+  const response = await db.query(query, [game_id]);
+
+  const averages = {};
+
+  response.rows.forEach((row) => {
+    averages[row.role_id] = Number(row.avg);
+  });
+
+  return averages;
+};
