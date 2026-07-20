@@ -1,4 +1,10 @@
 import { getGameById } from '../../models/games/games.js';
+import {
+  getCurrentUserReview,
+  getCriticReviews,
+  getVerifiedReviews,
+  getUserReviews,
+} from '../../models/reviews/reviews.js';
 
 /**
  * Get a game using an id
@@ -8,9 +14,18 @@ import { getGameById } from '../../models/games/games.js';
 export const getGame = async (req, res) => {
   const id = req.params.id;
   const game = await getGameById(id);
+  const user_id = res.locals.user.id;
+  const currentUserReview = await getCurrentUserReview(user_id, id);
+  const criticReviews = await getCriticReviews(id);
+  const verifiedReviews = await getVerifiedReviews(id);
+  const userReviews = await getUserReviews(id);
   res.render(`games/info`, {
     title: `${game.title} | Oasis Games`,
     game,
+    currentUserReview,
+    criticReviews,
+    verifiedReviews,
+    userReviews,
   });
 };
 

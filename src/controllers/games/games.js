@@ -45,10 +45,13 @@ const submitNewGame = async (req, res) => {
 
 const submitNewReview = async (req, res) => {
   const id = req.params.id;
+  let user_role_id = res.locals.user.role_id;
+  // Make admin reviews display as a critic
+  if (user_role_id === 1) user_role_id = 2;
   const review = {
     user_id: res.locals.user.id,
     game_id: id,
-    user_role_id: res.locals.user.role_id,
+    user_role_id,
     star_rating: req.body.starRating,
     comment: req.body.comment ?? null,
   };

@@ -56,6 +56,13 @@
     <button>Delete Account</button>
   </div>
   <a href="/logout" class="logout-button">Log Out</a>
+
+  <% if (user && NODE_ENV.includes('dev')) { %>
+      <details open>
+        <summary>User Info (Development Only)</summary>
+        <pre><%= JSON.stringify(user, null, 2) %></pre>
+      </details>
+  <% } %>
 </main>
 
 <%- include('../partials/footer') %>

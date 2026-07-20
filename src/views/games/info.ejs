@@ -1,5 +1,30 @@
 <%- include('../partials/header') %>
 
+<%
+  function formatDate(d) {
+    const date = new Date(d);
+
+    const months = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    ];
+
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+
+    let hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12 || 12;
+
+    return {
+      day: `${day} ${month} ${year}`,
+      time: `${hours}:${minutes}${ampm}`,
+    };
+  }
+%>
+
 <main class="game__page">
   <div class="game-display">
     <div>
@@ -50,183 +75,160 @@
       </div>
       <% if (user && user.role_name === 'admin') { %>
         <a href="/games/<%= game.id %>/edit" class="edit-game-button">Edit</a>
-        <%
-          // All this just to format the date string
-          const date = new Date(game.updated_at);
-
-          const months = [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-          ];
-
-          const day = date.getDate();
-          const month = months[date.getMonth()];
-          const year = date.getFullYear();
-
-          let hours = date.getHours();
-          const minutes = String(date.getMinutes()).padStart(2, '0');
-          const ampm = hours >= 12 ? 'pm' : 'am';
-          hours = hours % 12 || 12;
-
-          const dateString = `${day} ${month} ${year} at ${hours}:${minutes}${ampm}`;
-        %>
+        <% const updatedDate = formatDate(game.updated_at) %>
         <div class="edit-message">
           <p>Last edited:</p>
-          <p><%= dateString %></p>
+          <p><%= updatedDate.day %> at <%= updatedDate.time %></p>
         </div>
       <% } %>
     </div>
   </div>
   <div class="reviews">
     <% if (user) { %>
-      <div class="current-user-review">
-        <p>It looks like you haven't left a review yet.</p>
-        <a href="/games/<%= game.id %>/review" class="leave-review">Leave a Review</a>
-      </div>
+      <% if (currentUserReview && currentUserReview.length !== 0) { %>
+        <div class="review-section">
+          <h1>Your Review</h1>
+          <div class="review-card">
+            <div class="review-content">
+              <div class="username-container">
+                <span class="username"><%= currentUserReview.username %></span>
+                <span class="employee-icon <%= currentUserReview.role_name === 'critic' ? '' : 'hide' %>" title="Oasis Employee">&#xf1055;</span>
+                <span class="verified-icon <%= currentUserReview.role_name === 'verified' ? '' : 'hide' %>" title="Verified User">&#xebe9;</span>
+              </div>
+              <p class="review-message"><%= currentUserReview.comment %></p>
+            </div>
+            <div class="rating-info">
+              <p class="number-rating"><%= currentUserReview.star_rating / 2 %></p>
+              <p class="star-rating">
+                <% for (let i = 0; i < 5; i++) { %> 
+                  <% const value = currentUserReview.star_rating - (i * 2); %>
+
+                  <% if (value >= 2) { %>
+                    <span>&#xf04ce;</span>
+                  <% } else if (value >= 1) { %>
+                    <span>&#xf04d0;</span>
+                  <% } else { %>
+                    <span>&#xf04d2;</span>
+                  <% } %>
+                <% } %>
+              </p>
+              <% const userReviewDate = formatDate(currentUserReview.created_at) %>
+              <p><%= userReviewDate.day %></p>
+              <p><%= userReviewDate.time %></p>
+            </div>
+          </div>
+        </div>
+      <% } else { %>
+        <div class="current-user-review">
+          <p>It looks like you haven't left a review yet.</p>
+          <a href="/games/<%= game.id %>/review" class="leave-review">Leave a Review</a>
+        </div>
+      <% } %>
     <% } %>
 
     <div class="review-section">
       <h1>Our Reviews</h1>
-      <div class="review-card">
-        <div class="review-content">
-          <div class="username-container">
-            <span class="username">username</span>
-            <span class="employee-icon" title="Oasis Employee">&#xf1055;</span>
-            <span class="verified-icon" title="Verified User">&#xebe9;</span>
+      <% for (let criticReview of criticReviews) { %>
+        <div class="review-card">
+          <div class="review-content">
+            <div class="username-container">
+              <span class="username"><%= criticReview.username %></span>
+              <span class="employee-icon <%= criticReview.role_name === 'critic' ? '' : 'hide' %>" title="Oasis Employee">&#xf1055;</span>
+              <span class="verified-icon <%= criticReview.role_name === 'verified' ? '' : 'hide' %>" title="Verified User">&#xebe9;</span>
+            </div>
+            <p class="review-message"><%= criticReview.comment %></p>
           </div>
-          <p class="review-message">I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
-        </div>
-        <div class="rating-info">
-          <p class="number-rating">3.5</p>
-          <p class="star-rating">
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04d0;</span>
-            <span>&#xf04d2;</span>
-          </p>
-          <p>16 Jul 2026</p>
-          <p>8:10pm</p>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-content">
-          <div class="username-container">
-            <span class="username">username</span>
-            <span class="employee-icon" title="Oasis Employee">&#xf1055;</span>
-            <span class="verified-icon" title="Verified User">&#xebe9;</span>
+          <div class="rating-info">
+            <p class="number-rating"><%= criticReview.star_rating / 2 %></p>
+            <p class="star-rating">
+              <% for (let i = 0; i < 5; i++) { %> 
+                <% const value = criticReview.star_rating - (i * 2); %>
+
+                <% if (value >= 2) { %>
+                  <span>&#xf04ce;</span>
+                <% } else if (value >= 1) { %>
+                  <span>&#xf04d0;</span>
+                <% } else { %>
+                  <span>&#xf04d2;</span>
+                <% } %>
+              <% } %>
+            </p>
+            <% const criticReviewDate = formatDate(criticReview.created_at) %>
+            <p><%= criticReviewDate.day %></p>
+            <p><%= criticReviewDate.time %></p>
           </div>
-          <p class="review-message">I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
         </div>
-        <div class="rating-info">
-          <p class="number-rating">3.5</p>
-          <p class="star-rating">
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04d0;</span>
-            <span>&#xf04d2;</span>
-          </p>
-          <p>16 Jul 2026</p>
-          <p>8:10pm</p>
-        </div>
-      </div>
+      <% } %>
     </div>
 
     <div class="review-section">
       <h1>Verified Reviews</h1>
-      <div class="review-card">
-        <div class="review-content">
-          <div class="username-container">
-            <span class="username">username</span>
-            <span class="employee-icon" title="Oasis Employee">&#xf1055;</span>
-            <span class="verified-icon" title="Verified User">&#xebe9;</span>
+      <% for (let verifiedReview of verifiedReviews) { %>
+        <div class="review-card">
+          <div class="review-content">
+            <div class="username-container">
+              <span class="username"><%= verifiedReview.username %></span>
+              <span class="employee-icon <%= verifiedReview.role_name === 'critic' ? '' : 'hide' %>" title="Oasis Employee">&#xf1055;</span>
+              <span class="verified-icon <%= verifiedReview.role_name === 'verified' ? '' : 'hide' %>" title="Verified User">&#xebe9;</span>
+            </div>
+            <p class="review-message"><%= verifiedReview.comment %></p>
           </div>
-          <p class="review-message">I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
-        </div>
-        <div class="rating-info">
-          <p class="number-rating">3.5</p>
-          <p class="star-rating">
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04d0;</span>
-            <span>&#xf04d2;</span>
-          </p>
-          <p>16 Jul 2026</p>
-          <p>8:10pm</p>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-content">
-          <div class="username-container">
-            <span class="username">username</span>
-            <span class="employee-icon" title="Oasis Employee">&#xf1055;</span>
-            <span class="verified-icon" title="Verified User">&#xebe9;</span>
+          <div class="rating-info">
+            <p class="number-rating"><%= verifiedReview.star_rating / 2 %></p>
+            <p class="star-rating">
+              <% for (let i = 0; i < 5; i++) { %> 
+                <% const value = verifiedReview.star_rating - (i * 2); %>
+
+                <% if (value >= 2) { %>
+                  <span>&#xf04ce;</span>
+                <% } else if (value >= 1) { %>
+                  <span>&#xf04d0;</span>
+                <% } else { %>
+                  <span>&#xf04d2;</span>
+                <% } %>
+              <% } %>
+            </p>
+            <% const verifiedReviewDate = formatDate(verifiedReview.created_at) %>
+            <p><%= verifiedReviewDate.day %></p>
+            <p><%= verifiedReviewDate.time %></p>
           </div>
-          <p class="review-message">I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
         </div>
-        <div class="rating-info">
-          <p class="number-rating">3.5</p>
-          <p class="star-rating">
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04d0;</span>
-            <span>&#xf04d2;</span>
-          </p>
-          <p>16 Jul 2026</p>
-          <p>8:10pm</p>
-        </div>
-      </div>
+      <% } %>
     </div>
 
     <div class="review-section">
       <h1>User Reviews</h1>
-      <div class="review-card">
-        <div class="review-content">
-          <div class="username-container">
-            <span class="username">username</span>
-            <span class="employee-icon" title="Oasis Employee">&#xf1055;</span>
-            <span class="verified-icon" title="Verified User">&#xebe9;</span>
+      <% for (let userReview of userReviews) { %>
+        <div class="review-card">
+          <div class="review-content">
+            <div class="username-container">
+              <span class="username"><%= userReview.username %></span>
+              <span class="employee-icon <%= userReview.role_name === 'critic' ? '' : 'hide' %>" title="Oasis Employee">&#xf1055;</span>
+              <span class="verified-icon <%= userReview.role_name === 'verified' ? '' : 'hide' %>" title="Verified User">&#xebe9;</span>
+            </div>
+            <p class="review-message"><%= userReview.comment %></p>
           </div>
-          <p class="review-message">I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
-        </div>
-        <div class="rating-info">
-          <p class="number-rating">3.5</p>
-          <p class="star-rating">
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04d0;</span>
-            <span>&#xf04d2;</span>
-          </p>
-          <p>16 Jul 2026</p>
-          <p>8:10pm</p>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-content">
-          <div class="username-container">
-            <span class="username">username</span>
-            <span class="employee-icon" title="Oasis Employee">&#xf1055;</span>
-            <span class="verified-icon" title="Verified User">&#xebe9;</span>
+          <div class="rating-info">
+            <p class="number-rating"><%= userReview.star_rating / 2 %></p>
+            <p class="star-rating">
+              <% for (let i = 0; i < 5; i++) { %> 
+                <% const value = userReview.star_rating - (i * 2); %>
+
+                <% if (value >= 2) { %>
+                  <span>&#xf04ce;</span>
+                <% } else if (value >= 1) { %>
+                  <span>&#xf04d0;</span>
+                <% } else { %>
+                  <span>&#xf04d2;</span>
+                <% } %>
+              <% } %>
+            </p>
+            <% const userReviewDate = formatDate(userReview.created_at) %>
+            <p><%= userReviewDate.day %></p>
+            <p><%= userReviewDate.time %></p>
           </div>
-          <p class="review-message">I love this game. It was always my favorite of all of the pokemon games. I have so many memories of me and my sister playing for hours trying to catch every single pokemon in the game.</p>
         </div>
-        <div class="rating-info">
-          <p class="number-rating">3.5</p>
-          <p class="star-rating">
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04ce;</span>
-            <span>&#xf04d0;</span>
-            <span>&#xf04d2;</span>
-          </p>
-          <p>16 Jul 2026</p>
-          <p>8:10pm</p>
-        </div>
-      </div>
+      <% } %>
     </div>
   </div>
 </main>
