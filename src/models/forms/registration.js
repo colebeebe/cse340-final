@@ -141,7 +141,7 @@ export const getUserById = async (id) => {
 export const updateUser = async (id, username, email) => {
   const query = `
     UPDATE oa_users
-    SET username = &1, email = $2, updated_at = CURRENT_TIMESTAMP
+    SET username = $1, email = $2, updated_at = CURRENT_TIMESTAMP
     WHERE id = $3
     RETURNING id, username, email, updated_at;
   `;
