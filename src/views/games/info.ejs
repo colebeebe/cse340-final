@@ -146,6 +146,9 @@
 
     <div class="review-section">
       <h1>Our Reviews</h1>
+      <% if (criticReviews.length === 0) { %>
+        <p class="no-review-msg">No critic reviews yet.</p>
+      <% } %>
       <% for (let criticReview of criticReviews) { %>
         <div class="review-card">
           <div class="review-content">
@@ -181,6 +184,9 @@
 
     <div class="review-section">
       <h1>Verified Reviews</h1>
+      <% if (verifiedReviews.length === 0) { %>
+        <p class="no-review-msg">No verified reviews yet.</p>
+      <% } %>
       <% for (let verifiedReview of verifiedReviews) { %>
         <div class="review-card">
           <div class="review-content">
@@ -216,6 +222,9 @@
 
     <div class="review-section">
       <h1>User Reviews</h1>
+      <% if (userReviews.length === 0) { %>
+        <p class="no-review-msg">No user reviews yet.</p>
+      <% } %>
       <% for (let userReview of userReviews) { %>
         <div class="review-card">
           <div class="review-content">

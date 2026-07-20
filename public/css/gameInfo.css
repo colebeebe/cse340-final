@@ -139,6 +139,11 @@
         margin-top: 30px;
       }
 
+      .no-review-msg {
+        text-align: center;
+        font-size: 1.2rem;
+      }
+
       .review-card {
         background-color: #3e3e40;
         padding: 20px;

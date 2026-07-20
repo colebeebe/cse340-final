@@ -15,7 +15,7 @@ import {
 export const getGame = async (req, res) => {
   const id = req.params.id;
   const game = await getGameById(id);
-  const user_id = res.locals.user.id;
+  const user_id = res.locals.user ? res.locals.user.id : null;
 
   const currentUserReview = await getCurrentUserReview(user_id, id);
   const criticReviews = await getCriticReviews(id);
