@@ -1,6 +1,12 @@
 import { Router } from 'express';
 
-import { homePage, homePageStyle, aboutPage, dashboardPage } from './index.js';
+import {
+  homePage,
+  homePageStyle,
+  aboutPage,
+  dashboardPage,
+  deleteReview,
+} from './index.js';
 
 import accountRoutes from './account/account.js';
 import gameRoutes from './games/games.js';
@@ -8,6 +14,7 @@ import loginRoutes, { processLogout } from './forms/login.js';
 import registrationRoutes from './forms/register.js';
 import searchRoutes from './search.js';
 import userRoutes from './users/users.js';
+
 import { requireLogin, requireRole } from '../middleware/auth.js';
 
 const router = Router();
@@ -35,5 +42,7 @@ router.use('/search', searchRoutes);
 router.use('/login', loginRoutes);
 router.use('/register', registrationRoutes);
 router.use('/users', requireRole(['admin']), userRoutes);
+
+router.post('/review/delete/:gameid/:userid', requireLogin, deleteReview);
 
 export default router;

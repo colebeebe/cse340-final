@@ -3,6 +3,7 @@ import db from '../db.js';
 export const getCurrentUserReview = async (user_id, game_id) => {
   const query = `
     SELECT
+      oa_reviews.user_id,
       oa_users.username,
       oa_roles.role_name,
       oa_reviews.star_rating,
@@ -27,6 +28,7 @@ export const getCurrentUserReview = async (user_id, game_id) => {
 export const getCriticReviews = async (game_id) => {
   const query = `
     SELECT
+      oa_reviews.user_id,
       oa_users.username,
       oa_roles.role_name,
       oa_reviews.star_rating,
@@ -53,6 +55,7 @@ export const getCriticReviews = async (game_id) => {
 export const getVerifiedReviews = async (game_id) => {
   const query = `
     SELECT
+      oa_reviews.user_id,
       oa_users.username,
       oa_roles.role_name,
       oa_reviews.star_rating,
@@ -79,6 +82,7 @@ export const getVerifiedReviews = async (game_id) => {
 export const getUserReviews = async (game_id) => {
   const query = `
     SELECT
+      oa_reviews.user_id,
       oa_users.username,
       oa_roles.role_name,
       oa_reviews.star_rating,
@@ -125,4 +129,18 @@ export const getStarRatings = async (game_id) => {
   });
 
   return averages;
+};
+
+export const deleteReviewById = async (user_id, game_id) => {
+  const query = `
+    DELETE FROM oa_reviews
+    WHERE
+      user_id = $1
+    AND
+      game_id = $2;
+  `;
+
+  const params = [user_id, game_id];
+
+  await db.query(query, params);
 };

@@ -107,33 +107,38 @@
         <div class="review-section">
           <h1>Your Review</h1>
           <div class="review-card">
-            <div class="review-content">
-              <div class="username-container">
-                <span class="username"><%= currentUserReview.username %></span>
-                <span class="employee-icon <%= currentUserReview.role_name === 'critic' ? '' : 'hide' %>" title="Oasis Employee">&#xf1055;</span>
-                <span class="verified-icon <%= currentUserReview.role_name === 'verified' ? '' : 'hide' %>" title="Verified User">&#xebe9;</span>
+            <div class="top-content">
+              <div class="review-content">
+                <div class="username-container">
+                  <span class="username"><%= currentUserReview.username %></span>
+                  <span class="employee-icon <%= currentUserReview.role_name === 'critic' ? '' : 'hide' %>" title="Oasis Employee">&#xf1055;</span>
+                  <span class="verified-icon <%= currentUserReview.role_name === 'verified' ? '' : 'hide' %>" title="Verified User">&#xebe9;</span>
+                </div>
+                <p class="review-message"><%= currentUserReview.comment %></p>
               </div>
-              <p class="review-message"><%= currentUserReview.comment %></p>
-            </div>
-            <div class="rating-info">
-              <p class="number-rating"><%= currentUserReview.star_rating / 2 %></p>
-              <p class="star-rating">
-                <% for (let i = 0; i < 5; i++) { %> 
-                  <% const value = currentUserReview.star_rating - (i * 2); %>
+              <div class="rating-info">
+                <p class="number-rating"><%= currentUserReview.star_rating / 2 %></p>
+                <p class="star-rating">
+                  <% for (let i = 0; i < 5; i++) { %> 
+                    <% const value = currentUserReview.star_rating - (i * 2); %>
 
-                  <% if (value >= 2) { %>
-                    <span>&#xf04ce;</span>
-                  <% } else if (value >= 1) { %>
-                    <span>&#xf04d0;</span>
-                  <% } else { %>
-                    <span>&#xf04d2;</span>
+                    <% if (value >= 2) { %>
+                      <span>&#xf04ce;</span>
+                    <% } else if (value >= 1) { %>
+                      <span>&#xf04d0;</span>
+                    <% } else { %>
+                      <span>&#xf04d2;</span>
+                    <% } %>
                   <% } %>
-                <% } %>
-              </p>
-              <% const userReviewDate = formatDate(currentUserReview.created_at) %>
-              <p><%= userReviewDate.day %></p>
-              <p><%= userReviewDate.time %></p>
+                </p>
+                <% const userReviewDate = formatDate(currentUserReview.created_at) %>
+                <p><%= userReviewDate.day %></p>
+                <p><%= userReviewDate.time %></p>
+              </div>
             </div>
+            <form method="POST" action="/review/delete/<%= game.id %>/<%= currentUserReview.user_id %>">
+              <button type="submit" class="delete-btn">Delete</button>
+            </form>
           </div>
         </div>
       <% } else { %>
@@ -151,33 +156,40 @@
       <% } %>
       <% for (let criticReview of criticReviews) { %>
         <div class="review-card">
-          <div class="review-content">
-            <div class="username-container">
-              <span class="username"><%= criticReview.username %></span>
-              <span class="employee-icon <%= criticReview.role_name === 'critic' ? '' : 'hide' %>" title="Oasis Employee">&#xf1055;</span>
-              <span class="verified-icon <%= criticReview.role_name === 'verified' ? '' : 'hide' %>" title="Verified User">&#xebe9;</span>
+          <div class="top-content">
+            <div class="review-content">
+              <div class="username-container">
+                <span class="username"><%= criticReview.username %></span>
+                <span class="employee-icon <%= criticReview.role_name === 'critic' ? '' : 'hide' %>" title="Oasis Employee">&#xf1055;</span>
+                <span class="verified-icon <%= criticReview.role_name === 'verified' ? '' : 'hide' %>" title="Verified User">&#xebe9;</span>
+              </div>
+              <p class="review-message"><%= criticReview.comment %></p>
             </div>
-            <p class="review-message"><%= criticReview.comment %></p>
-          </div>
-          <div class="rating-info">
-            <p class="number-rating"><%= criticReview.star_rating / 2 %></p>
-            <p class="star-rating">
-              <% for (let i = 0; i < 5; i++) { %> 
-                <% const value = criticReview.star_rating - (i * 2); %>
+            <div class="rating-info">
+              <p class="number-rating"><%= criticReview.star_rating / 2 %></p>
+              <p class="star-rating">
+                <% for (let i = 0; i < 5; i++) { %> 
+                  <% const value = criticReview.star_rating - (i * 2); %>
 
-                <% if (value >= 2) { %>
-                  <span>&#xf04ce;</span>
-                <% } else if (value >= 1) { %>
-                  <span>&#xf04d0;</span>
-                <% } else { %>
-                  <span>&#xf04d2;</span>
+                  <% if (value >= 2) { %>
+                    <span>&#xf04ce;</span>
+                  <% } else if (value >= 1) { %>
+                    <span>&#xf04d0;</span>
+                  <% } else { %>
+                    <span>&#xf04d2;</span>
+                  <% } %>
                 <% } %>
-              <% } %>
-            </p>
-            <% const criticReviewDate = formatDate(criticReview.created_at) %>
-            <p><%= criticReviewDate.day %></p>
-            <p><%= criticReviewDate.time %></p>
+              </p>
+              <% const criticReviewDate = formatDate(criticReview.created_at) %>
+              <p><%= criticReviewDate.day %></p>
+              <p><%= criticReviewDate.time %></p>
+            </div>
           </div>
+          <% if (user && (user.role_name === 'admin' || user.id === criticReview.user_id)) { %>
+            <form method="POST" action="/review/delete/<%= game.id %>/<%= criticReview.user_id %>">
+              <button type="submit" class="delete-btn">Delete</button>
+            </form>
+          <% } %>
         </div>
       <% } %>
     </div>
@@ -189,33 +201,40 @@
       <% } %>
       <% for (let verifiedReview of verifiedReviews) { %>
         <div class="review-card">
-          <div class="review-content">
-            <div class="username-container">
-              <span class="username"><%= verifiedReview.username %></span>
-              <span class="employee-icon <%= verifiedReview.role_name === 'critic' ? '' : 'hide' %>" title="Oasis Employee">&#xf1055;</span>
-              <span class="verified-icon <%= verifiedReview.role_name === 'verified' ? '' : 'hide' %>" title="Verified User">&#xebe9;</span>
+          <div class="top-content">
+            <div class="review-content">
+              <div class="username-container">
+                <span class="username"><%= verifiedReview.username %></span>
+                <span class="employee-icon <%= verifiedReview.role_name === 'critic' ? '' : 'hide' %>" title="Oasis Employee">&#xf1055;</span>
+                <span class="verified-icon <%= verifiedReview.role_name === 'verified' ? '' : 'hide' %>" title="Verified User">&#xebe9;</span>
+              </div>
+              <p class="review-message"><%= verifiedReview.comment %></p>
             </div>
-            <p class="review-message"><%= verifiedReview.comment %></p>
-          </div>
-          <div class="rating-info">
-            <p class="number-rating"><%= verifiedReview.star_rating / 2 %></p>
-            <p class="star-rating">
-              <% for (let i = 0; i < 5; i++) { %> 
-                <% const value = verifiedReview.star_rating - (i * 2); %>
+            <div class="rating-info">
+              <p class="number-rating"><%= verifiedReview.star_rating / 2 %></p>
+              <p class="star-rating">
+                <% for (let i = 0; i < 5; i++) { %> 
+                  <% const value = verifiedReview.star_rating - (i * 2); %>
 
-                <% if (value >= 2) { %>
-                  <span>&#xf04ce;</span>
-                <% } else if (value >= 1) { %>
-                  <span>&#xf04d0;</span>
-                <% } else { %>
-                  <span>&#xf04d2;</span>
+                  <% if (value >= 2) { %>
+                    <span>&#xf04ce;</span>
+                  <% } else if (value >= 1) { %>
+                    <span>&#xf04d0;</span>
+                  <% } else { %>
+                    <span>&#xf04d2;</span>
+                  <% } %>
                 <% } %>
-              <% } %>
-            </p>
-            <% const verifiedReviewDate = formatDate(verifiedReview.created_at) %>
-            <p><%= verifiedReviewDate.day %></p>
-            <p><%= verifiedReviewDate.time %></p>
+              </p>
+              <% const verifiedReviewDate = formatDate(verifiedReview.created_at) %>
+              <p><%= verifiedReviewDate.day %></p>
+              <p><%= verifiedReviewDate.time %></p>
+            </div>
           </div>
+          <% if (user && (user.role_name === 'admin' || user.id === verifiedReview.user_id)) { %>
+            <form method="POST" action="/review/delete/<%= game.id %>/<%= verifiedReview.user_id %>">
+              <button type="submit" class="delete-btn">Delete</button>
+            </form>
+          <% } %>
         </div>
       <% } %>
     </div>
@@ -227,33 +246,40 @@
       <% } %>
       <% for (let userReview of userReviews) { %>
         <div class="review-card">
-          <div class="review-content">
-            <div class="username-container">
-              <span class="username"><%= userReview.username %></span>
-              <span class="employee-icon <%= userReview.role_name === 'critic' ? '' : 'hide' %>" title="Oasis Employee">&#xf1055;</span>
-              <span class="verified-icon <%= userReview.role_name === 'verified' ? '' : 'hide' %>" title="Verified User">&#xebe9;</span>
+          <div class="top-content">
+            <div class="review-content">
+              <div class="username-container">
+                <span class="username"><%= userReview.username %></span>
+                <span class="employee-icon <%= userReview.role_name === 'critic' ? '' : 'hide' %>" title="Oasis Employee">&#xf1055;</span>
+                <span class="verified-icon <%= userReview.role_name === 'verified' ? '' : 'hide' %>" title="Verified User">&#xebe9;</span>
+              </div>
+              <p class="review-message"><%= userReview.comment %></p>
             </div>
-            <p class="review-message"><%= userReview.comment %></p>
-          </div>
-          <div class="rating-info">
-            <p class="number-rating"><%= userReview.star_rating / 2 %></p>
-            <p class="star-rating">
-              <% for (let i = 0; i < 5; i++) { %> 
-                <% const value = userReview.star_rating - (i * 2); %>
+            <div class="rating-info">
+              <p class="number-rating"><%= userReview.star_rating / 2 %></p>
+              <p class="star-rating">
+                <% for (let i = 0; i < 5; i++) { %> 
+                  <% const value = userReview.star_rating - (i * 2); %>
 
-                <% if (value >= 2) { %>
-                  <span>&#xf04ce;</span>
-                <% } else if (value >= 1) { %>
-                  <span>&#xf04d0;</span>
-                <% } else { %>
-                  <span>&#xf04d2;</span>
+                  <% if (value >= 2) { %>
+                    <span>&#xf04ce;</span>
+                  <% } else if (value >= 1) { %>
+                    <span>&#xf04d0;</span>
+                  <% } else { %>
+                    <span>&#xf04d2;</span>
+                  <% } %>
                 <% } %>
-              <% } %>
-            </p>
-            <% const userReviewDate = formatDate(userReview.created_at) %>
-            <p><%= userReviewDate.day %></p>
-            <p><%= userReviewDate.time %></p>
+              </p>
+              <% const userReviewDate = formatDate(userReview.created_at) %>
+              <p><%= userReviewDate.day %></p>
+              <p><%= userReviewDate.time %></p>
+            </div>
           </div>
+          <% if (user && (user.role_name === 'admin' || user.id === userReview.user_id)) { %>
+            <form method="POST" action="/review/delete/<%= game.id %>/<%= userReview.user_id %>">
+              <button type="submit" class="delete-btn">Delete</button>
+            </form>
+          <% } %>
         </div>
       <% } %>
     </div>
