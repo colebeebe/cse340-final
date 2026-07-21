@@ -42,7 +42,7 @@ export const deleteReview = async (req, res) => {
     return res.redirect('/');
   }
 
-  if (res.locals.user != userId && res.locals.user.role_name !== 'admin') {
+  if (res.locals.user.id != userId && res.locals.user.role_name !== 'admin') {
     req.flash('error', 'You do not have access to this resource');
     return res.redirect(`/games/${gameId}`);
   }
